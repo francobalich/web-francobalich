@@ -1,0 +1,86 @@
+# Documentation Synchronization Rule
+
+## Objective
+Every time a change is made to the code, configuration, or project structure, the PRD.md and README.md must be automatically reviewed and updated to keep documentation synchronized.
+
+## AI Responsibilities
+
+### 1. Automatic Post-Change Review
+- After implementing any change, ALWAYS review if it affects:
+  - Functionalities described in PRD.md
+  - Information in README.md
+  - Listed dependencies
+  - Project structure
+  - Available scripts
+  - Development configuration
+
+### 2. Mandatory Updates
+When detecting changes that affect documentation:
+- **PRD.md**: Update progress status, completed tasks, new requirements
+- **README.md**: Update versions, installation instructions, features, technologies
+- **Both files**: Maintain consistency between technical information
+
+### 3. Update Process
+1. **Identify Impact**: Determine which sections need updating
+2. **Update PRD.md**: Mark completed tasks, update progress, add new requirements
+3. **Update README.md**: Reflect current state of technologies and features
+4. **Verify Consistency**: Ensure both documents are aligned
+5. **Check Completeness**: Verify all relevant information is updated
+6. **Validate Format**: Maintain proper markdown structure
+7. **Confirm Accuracy**: Ensure information reflects actual project state
+
+## Specific Update Triggers
+
+### Code Changes
+- New features → Update feature lists in both files
+- Bug fixes → Update status in PRD.md
+- Refactoring → Update technical descriptions
+
+### Configuration Changes
+- package.json → Update dependency versions in both files
+- New scripts → Update installation/usage instructions
+- Environment variables → Update configuration sections
+
+### Structure Changes
+- New files/folders → Update project structure descriptions
+- Moved files → Update relevant paths and references
+- Deleted files → Remove obsolete references
+
+## Quality Standards
+
+### PRD.md Updates
+- ✅ Mark completed tasks with checkboxes
+- 📝 Update progress percentages
+- 🆕 Add new requirements or changes
+- 📊 Update technical specifications
+- 🎯 Maintain objective clarity
+
+### README.md Updates
+- 🔄 Update version numbers
+- 📦 Update installation instructions
+- 🛠️ Update technology lists
+- ✨ Update feature descriptions
+- 🚀 Update usage examples
+
+## Verification Checklist
+Before completing any task, verify:
+- [ ] PRD.md reflects current project state
+- [ ] README.md has updated information
+- [ ] Both files are consistent with each other
+- [ ] All version numbers are current
+- [ ] Installation instructions work
+- [ ] Feature lists are complete and accurate
+
+## Exception Handling
+If updates are not possible due to:
+- **Unclear impact**: Request clarification before proceeding
+- **Complex changes**: Break down into smaller, manageable updates
+- **Conflicting information**: Prioritize actual code state over documentation
+
+## Success Criteria
+Documentation synchronization is successful when:
+1. PRD.md accurately reflects project progress
+2. README.md contains current and accurate information
+3. Both documents are consistent with actual codebase
+4. Installation and usage instructions are verified to work
+5. All stakeholders can understand project state from documentation alone
