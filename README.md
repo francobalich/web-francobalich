@@ -68,7 +68,7 @@ Portafolio-FrancoBalich/
 
 ## 📫 Contacto y Redes Sociales
 - GitHub: [francobalich](https://github.com/francobalich)
-- LinkedIn: [franco-balich](https://www.linkedin.com/in/franco-balich/)
+- LinkedIn: [franco-balich](https://www.linkedin.com/in/francobalich/)
 - YouTube: [Franco Balich](https://www.youtube.com/c/FrancoBalich)
 - Twitch: [francolabs](https://www.twitch.tv/francolabs)
 - Instagram: [francobalich](https://www.instagram.com/francobalich/)
