@@ -5,7 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
+    
+    <!-- SEO Optimizado -->
+    <title>Contacto - Franco Balich | Director Laboratorio Creativo 3D</title>
+    <meta name="description" content="Contáctame para consultas sobre desarrollo Full Stack, Data Engineering, IoT o proyectos de tecnología. Franco Balich, Director del Laboratorio Creativo 3D.">
+    <meta name="keywords" content="contacto Franco Balich, consultas desarrollo web, proyectos IoT, Data Engineering, Full Stack Developer, Laboratorio Creativo 3D">
+    <meta name="author" content="Franco Adrian Balich">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://francobalich.com/contacto">
+    <meta property="og:title" content="Contacto - Franco Balich | Director Laboratorio Creativo 3D">
+    <meta property="og:description" content="Contáctame para consultas sobre desarrollo Full Stack, Data Engineering, IoT o proyectos de tecnología.">
+    <meta property="og:image" content="../img/foto-de-perfil.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://francobalich.com/contacto">
+    <meta property="twitter:title" content="Contacto - Franco Balich">
+    <meta property="twitter:description" content="Contáctame para consultas sobre desarrollo Full Stack, Data Engineering, IoT o proyectos de tecnología.">
+    <meta property="twitter:image" content="../img/foto-de-perfil.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://francobalich.com/contacto">
+    
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/mail.css">
     <link rel="stylesheet" href="../css/normalize.css">
@@ -14,18 +38,20 @@
 
 <body>
         <%- include('../partials/menu.ejs'); %>
-        <div class="mailContainer">
-            <div class="mailCard">
-                <h3>Contacto</h3>
-                <p class="contact-intro">¿Tienes alguna consulta o propuesta? ¡Escríbeme y te responderé a la brevedad!</p>
-                <form action="mail" method="post" class="mailForm">
-                    <input class="formElement formTxt" name="txtNombre" id="txtNombre" type="text" placeholder="Tu nombre">
-                    <input class="formElement formTxt" name="txtEmail" id="txtEmail" type="email" placeholder="Tu correo electrónico">
-                    <textarea class="formElement formTextarea" name="txtMensaje" id="txtMensaje" placeholder="Escribe tu mensaje aquí..."></textarea>
-                    <input class="formSend" type="submit" value="Enviar mensaje">
-                </form>
+        <main>
+            <div class="mailContainer">
+                <div class="mailCard">
+                    <h1>Contacto</h1>
+                    <p class="contact-intro">¿Tienes alguna consulta sobre desarrollo Full Stack, Data Engineering, IoT o proyectos de tecnología? ¡Escríbeme y te responderé a la brevedad!</p>
+                    <form action="mail" method="post" class="mailForm" aria-label="Formulario de contacto">
+                        <input class="formElement formTxt" name="txtNombre" id="txtNombre" type="text" placeholder="Tu nombre" required aria-label="Nombre completo">
+                        <input class="formElement formTxt" name="txtEmail" id="txtEmail" type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+                        <textarea class="formElement formTextarea" name="txtMensaje" id="txtMensaje" placeholder="Escribe tu mensaje aquí..." required aria-label="Mensaje"></textarea>
+                        <input class="formSend" type="submit" value="Enviar mensaje">
+                    </form>
+                </div>
             </div>
-        </div>
+        </main>
         <%- include('../partials/footer.ejs'); %>
 </body>
 
