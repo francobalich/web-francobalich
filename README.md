@@ -12,14 +12,22 @@ Portafolio profesional de Franco Balich, Director del Laboratorio Creativo 3D, D
 - Proyectos de innovación e investigación
 
 ## 🛠️ Tecnologías
-- Python
-- IoT (Internet de las Cosas)
-- Desarrollo Full Stack
-- Análisis de Datos
-- Node.js
-- Express.js
-- EJS
-- Nodemailer
+
+### Backend
+- **Node.js** (v18+)
+- **Express.js** (v4.19.2) - Framework web
+- **EJS** (v3.1.10) - Motor de plantillas
+- **Nodemailer** (v6.9.15) - Envío de emails
+
+### Herramientas de Desarrollo
+- **Nodemon** (v3.1.7) - Desarrollo con recarga automática
+- **Dotenv** (v16.4.5) - Variables de entorno
+
+### Estado del Proyecto
+- ✅ **Dependencias**: Actualizadas a versiones más recientes y seguras
+- ✅ **Vulnerabilidades**: 0 vulnerabilidades críticas o altas
+- ✅ **Compatibilidad**: Verificado funcionamiento con Node.js 18+
+- 🔄 **En progreso**: Optimización de assets y modernización de diseño
 
 ## 📦 Instalación
 
@@ -28,7 +36,7 @@ Portafolio profesional de Franco Balich, Director del Laboratorio Creativo 3D, D
 git clone https://github.com/francobalich/Portafolio-FrancoBalich.git
 ```
 
-2. Instala las dependencias:
+2. Instala las dependencias actualizadas:
 ```bash
 npm install
 ```
@@ -42,8 +50,40 @@ EMAIL_PASS=tu_contraseña
 
 4. Inicia el servidor:
 ```bash
+npm start
+```
+
+Para desarrollo con recarga automática:
+```bash
 npm run dev
 ```
+
+## 🚀 Scripts Disponibles
+- `npm start`: Inicia el servidor en modo producción
+- `npm run dev`: Inicia el servidor en modo desarrollo con nodemon
+- `npm test`: Placeholder para tests (por implementar)
+
+## 🔒 Seguridad
+- **Dependencias seguras**: Todas las dependencias actualizadas a versiones sin vulnerabilidades conocidas
+- **Auditoría regular**: Verificación automática con `npm audit`
+- **Variables de entorno**: Configuración segura de credenciales
+
+## 📈 Estado de Modernización
+
+### ✅ Completado
+- Actualización de todas las dependencias
+- Resolución de vulnerabilidades de seguridad
+- Verificación de compatibilidad
+
+### 🔄 En Progreso
+- Optimización de imágenes y assets
+- Modernización del diseño CSS
+- Mejoras de rendimiento
+
+### ⏳ Pendiente
+- Actualización de contenido personal
+- Implementación de nuevas funcionalidades
+- Testing exhaustivo en diferentes navegadores
 
 ## 🏗️ Estructura del Proyecto
 ```
@@ -60,11 +100,6 @@ Portafolio-FrancoBalich/
 ├── package.json
 └── README.md
 ```
-
-## 🚀 Scripts Disponibles
-- `npm start`: Inicia el servidor en modo producción
-- `npm run dev`: Inicia el servidor en modo desarrollo con nodemon
-- `npm test`: Ejecuta los tests
 
 ## 📫 Contacto y Redes Sociales
 - GitHub: [francobalich](https://github.com/francobalich)
