@@ -28,6 +28,7 @@ Portafolio profesional de Franco Balich, Director del Laboratorio Creativo 3D, D
 - ✅ **Vulnerabilidades**: 0 vulnerabilidades críticas o altas
 - ✅ **Compatibilidad**: Verificado funcionamiento con Node.js 18+
 - ✅ **SEO**: Optimizado con metadata, datos estructurados, robots.txt y sitemap.xml
+- ✅ **Información Personal**: Enlaces y habilidades técnicas actualizadas
 - 🔄 **En progreso**: Optimización de assets y modernización de diseño
 
 ## 📦 Instalación
@@ -62,6 +63,11 @@ npm run dev
 ## 🚀 Scripts Disponibles
 - `npm start`: Inicia el servidor en modo producción
 - `npm run dev`: Inicia el servidor en modo desarrollo con nodemon
+- `npm run dev-clean`: Mata procesos en puerto 5500 e inicia en desarrollo
+- `npm run start-clean`: Mata procesos en puerto 5500 e inicia en producción
+- `npm run kill-port`: Termina procesos que usan el puerto 5500
+- `npm audit`: Auditoría de seguridad de dependencias
+- `npm run audit-fix`: Corrige automáticamente vulnerabilidades
 - `npm test`: Placeholder para tests (por implementar)
 
 ## 🔒 Seguridad

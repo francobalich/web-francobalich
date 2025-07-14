@@ -5,7 +5,14 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "kill-port": "netstat -ano | findstr :5500 && for /f \"tokens=5\" %a in ('netstat -ano ^| findstr :5500') do taskkill /PID %a /F",
+    "dev-clean": "npm run kill-port && npm run dev",
+    "start-clean": "npm run kill-port && npm start",
+    "lint": "eslint src/",
+    "audit": "npm audit",
+    "audit-fix": "npm audit fix",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "repository": {
     "type": "git",

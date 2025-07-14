@@ -51,8 +51,40 @@ const iniciarServer = () => {
     res.redirect('/contacto');
   }); 
   
-  server.listen(port, () => {
-    console.log(`El server esta corriendo el puerto:${port}`);
-  });
+  // Función para intentar iniciar el servidor en el puerto especificado
+  const startServer = (portToTry) => {
+    server.listen(portToTry, () => {
+      console.log(`El server esta corriendo en el puerto: ${portToTry}`);
+    }).on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.log(`Puerto ${portToTry} está ocupado, intentando puerto ${portToTry + 1}`);
+        startServer(portToTry + 1);
+      } else {
+        console.error('Error al iniciar el servidor:', err);
+        process.exit(1);
+      }
+    });
+  };
+  
+  // Iniciar servidor con manejo de errores
+  startServer(port);
 };
+
+// Manejo de cierre graceful del servidor
+process.on('SIGINT', () => {
+  console.log('\nCerrando servidor...');
+  server.close(() => {
+    console.log('Servidor cerrado correctamente');
+    process.exit(0);
+  });
+});
+
+process.on('SIGTERM', () => {
+  console.log('\nCerrando servidor...');
+  server.close(() => {
+    console.log('Servidor cerrado correctamente');
+    process.exit(0);
+  });
+});
+
 iniciarServer();

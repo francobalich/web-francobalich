@@ -282,6 +282,10 @@ const contactLimit = rateLimit({
 - [x] Optimizar SEO y metadata
 - [x] Implementar datos estructurados
 - [x] Crear robots.txt y sitemap.xml
+- [x] Corregir información personal y enlaces
+- [x] Actualizar habilidades técnicas
+- [x] Mejorar manejo de errores del servidor
+- [x] Añadir scripts de desarrollo útiles
 - [ ] Optimizar imágenes y assets
 - [ ] Actualizar contenido
 - [ ] Modernizar diseño
