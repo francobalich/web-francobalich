@@ -3,10 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 const stats = [
-  { label: "Laboratorio", value: "Lab Creativo 3D" },
+  { label: "Experiencia", value: "+5 años" },
   { label: "Formación", value: "Doctorando" },
-  { label: "Especialización", value: "IoT · Datos · Web" },
-  { label: "Ubicación", value: "Argentina" },
+  { label: "Comunidad", value: "+120k seguidores" },
+  { label: "Laboratorio", value: "Lab Creativo 3D" },
 ];
 
 export default function Hero() {
@@ -18,7 +18,7 @@ export default function Hero() {
         <div className="flex items-center gap-4 mb-10">
           <span className="h-px w-10 bg-blue-500 flex-shrink-0" />
           <span className="text-sm md:text-base text-blue-400 font-medium tracking-widest uppercase">
-            Full Stack Developer · Data Engineer
+            Data Engineer · Full Stack · Docente · Creador de contenido
           </span>
         </div>
 
@@ -39,12 +39,12 @@ export default function Hero() {
 
             <div className="flex flex-col gap-3 max-w-xl">
               <p className="text-zinc-300 text-xl md:text-2xl font-light leading-snug">
-                Director del Laboratorio Creativo 3D
+                Data Engineer · Docente e Investigador
               </p>
               <p className="text-zinc-500 text-lg leading-relaxed">
-                Construyo soluciones en la intersección del software,
-                los datos y el hardware. Investigo, lidero y creo
-                proyectos con impacto real.
+                Más de 5 años construyendo software en desarrollo, investigación
+                y educación. Apasionado por la IA, el IoT y enseñar tecnología
+                a más de 120k personas en redes sociales.
               </p>
             </div>
 

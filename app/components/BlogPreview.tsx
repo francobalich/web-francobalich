@@ -39,7 +39,7 @@ export default function BlogPreview() {
                 Instagram
               </a>
               <a
-                href="https://twitch.tv/francobalich"
+                href="https://twitch.tv/francolabs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-lg glass glass-hover text-sm text-zinc-400 hover:text-zinc-100 transition-all duration-200"

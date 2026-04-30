@@ -22,12 +22,12 @@ export const socials: Social[] = [
   },
   {
     label: "Twitch",
-    href: "https://twitch.tv/francobalich",
+    href: "https://twitch.tv/francolabs",
     icon: "twitch",
   },
   {
     label: "Email",
-    href: "mailto:franco.balich@gmail.com",
+    href: "mailto:franbalich@gmail.com",
     icon: "email",
   },
 ];
