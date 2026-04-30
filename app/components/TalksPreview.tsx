@@ -23,7 +23,7 @@ export default function TalksPreview() {
           </div>
           {!isEmpty && (
             <Link
-              href="/charlas"
+              href="/talks"
               className="hidden sm:flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-300 transition-colors duration-200"
             >
               Ver todas

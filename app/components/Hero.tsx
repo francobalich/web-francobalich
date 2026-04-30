@@ -50,7 +50,7 @@ export default function Hero() {
 
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/proyectos"
+                href="/projects"
                 className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-base font-medium transition-colors duration-200"
               >
                 Ver proyectos

@@ -108,13 +108,13 @@ francobalich.com/
 │
 ├── /                    Página principal (one-page con anclas)
 │     ├── #hero          ¿Quién soy? — nombre, roles, foto, socials
-│     ├── #proyectos     Grid de proyectos (preview — 6 cards)
-│     ├── #charlas       Charlas y eventos (preview — últimas 3)
+│     ├── #projects      Grid de proyectos (preview — 6 cards)
+│     ├── #talks         Charlas y eventos (preview — últimas 3)
 │     └── #blog          Últimos posts (preview — últimas 3 entradas)
 │
 ├── /bio                 Biografía completa + Kit de prensa
-├── /proyectos           Grid completo de proyectos
-├── /charlas             Listado completo de charlas y eventos
+├── /projects            Grid completo de proyectos
+├── /talks               Listado completo de charlas y eventos
 ├── /blog                Listado de todos los posts
 ├── /blog/[slug]         Post individual
 ├── /links               Hub de links (estilo Linktree)
@@ -143,8 +143,8 @@ francobalich.com/
 
 **Links del Navbar**:
 ```
-Proyectos → /proyectos
-Charlas   → /charlas
+Proyectos → /projects
+Charlas   → /talks
 Blog      → /blog
 Bio       → /bio
 ```
@@ -192,7 +192,7 @@ GitHub · LinkedIn · Instagram · Twitch · Email
 
 ---
 
-### 6.3 Proyectos (`/proyectos` + preview en `#proyectos`)
+### 6.3 Proyectos (`/projects` + preview en `#projects`)
 
 **Formato validado**: Cada proyecto como **case study**, no solo una card con imagen. Los reclutadores y colaboradores valoran entender el razonamiento, no solo ver el resultado.
 
@@ -212,7 +212,7 @@ GitHub · LinkedIn · Instagram · Twitch · Email
 └──────────────────────────┘
 ```
 
-**Página individual** `/proyectos/[slug]` (fase 2):
+**Página individual** `/projects/[slug]` (fase 2):
 ```
 Problema    → Qué necesitaba resolver
 Enfoque     → Cómo lo encaré / decisiones técnicas
@@ -235,7 +235,7 @@ Links       → Demo + Repo
 
 ---
 
-### 6.4 Charlas y Eventos (`/charlas` + preview en `#charlas`)
+### 6.4 Charlas y Eventos (`/talks` + preview en `#talks`)
 
 **Propósito**: Validar presencia pública y actividad en la comunidad tech.
 
@@ -435,8 +435,8 @@ Línea de borde glass superior. Fondo mismo que el body (zinc-950).
 |------|-------|-------------|
 | `/` | Franco Balich — Full Stack Developer & Data Engineer | Bio corta |
 | `/bio` | Biografía — Franco Balich | Kit de prensa y recursos para medios |
-| `/proyectos` | Proyectos — Franco Balich | Descripción del trabajo |
-| `/charlas` | Charlas y Eventos — Franco Balich | Historial y próximos eventos |
+| `/projects` | Proyectos — Franco Balich | Descripción del trabajo |
+| `/talks` | Charlas y Eventos — Franco Balich | Historial y próximos eventos |
 | `/blog` | Blog — Franco Balich | Descripción del blog |
 | `/blog/[slug]` | [Título del post] — Franco Balich | excerpt del post |
 | `/links` | Franco Balich — Links | Todos los links en un lugar |
@@ -444,7 +444,7 @@ Línea de borde glass superior. Fondo mismo que el body (zinc-950).
 ### Open Graph Images
 
 **Estáticas** (diseñadas una vez, en `/public/og/`):
-- `og-home.png` — para `/`, `/proyectos`, `/charlas`, `/bio`
+- `og-home.png` — para `/`, `/projects`, `/talks`, `/bio`
 
 **Dinámicas** (generadas en runtime con `next/og`):
 - `/blog/[slug]` → genera OG con: título del post + "Franco Balich" + branding dark/blue
@@ -460,7 +460,7 @@ Twitter: twitter:card = summary_large_image, twitter:creator = @francobalich
 
 - **`/`**: tipo `Person` con name, url, sameAs (todas las redes)
 - **`/blog/[slug]`**: tipo `Article` con headline, author, datePublished, image
-- **`/charlas`**: tipo `Event` por cada charla próxima
+- **`/talks`**: tipo `Event` por cada charla próxima
 
 ### Sitemap y Robots
 
@@ -527,9 +527,9 @@ app/
       page.tsx              ← Payload admin UI en /admin
   bio/
     page.tsx
-  proyectos/
+  projects/
     page.tsx
-  charlas/
+  talks/
     page.tsx
   blog/
     page.tsx                ← Lista posts desde Payload/PostgreSQL
@@ -672,8 +672,8 @@ Desarrollar en local (npm run dev)
 ### Fase 2 — Secciones y Contenido Real
 **Objetivo**: Todas las rutas funcionando con información real de Franco.
 
-- [ ] Página `/proyectos` — grid completo con datos reales en `data/projects.ts`
-- [ ] Página `/charlas` — listado completo con datos reales en `data/talks.ts`
+- [ ] Página `/projects` — grid completo con datos reales en `data/projects.ts`
+- [ ] Página `/talks` — listado completo con datos reales en `data/talks.ts`
 - [ ] Página `/links` — hub estilo Linktree, sin navbar ni footer
 - [ ] Imágenes reales de proyectos en `/public/images/projects/`
 - [ ] Vanity URL `links.francobalich.com` → redirect 301 a `/links`
