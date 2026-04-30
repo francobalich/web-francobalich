@@ -55,8 +55,8 @@ export default function LinksPage() {
           <a
             key={social.label}
             href={social.href}
-            target={social.icon === "email" ? undefined : "_blank"}
-            rel={social.icon === "email" ? undefined : "noopener noreferrer"}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center justify-between px-5 py-4 rounded-2xl glass glass-hover text-zinc-300 hover:text-zinc-100 transition-all duration-200 group"
           >
             <span className="font-medium">{social.label}</span>

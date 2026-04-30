@@ -1,7 +1,7 @@
 export interface Social {
   label: string;
   href: string;
-  icon: "github" | "linkedin" | "instagram" | "twitch" | "email";
+  icon: "github" | "linkedin" | "instagram" | "twitch";
 }
 
 export const socials: Social[] = [
@@ -24,10 +24,5 @@ export const socials: Social[] = [
     label: "Twitch",
     href: "https://twitch.tv/francolabs",
     icon: "twitch",
-  },
-  {
-    label: "Email",
-    href: "mailto:franbalich@gmail.com",
-    icon: "email",
   },
 ];

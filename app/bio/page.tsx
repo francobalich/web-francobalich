@@ -135,18 +135,20 @@ export default function BioPage() {
                 </div>
                 <div className="flex flex-col gap-3 flex-shrink-0">
                   <a
-                    href="mailto:franco@francobalich.com"
+                    href="https://linkedin.com/in/francobalich"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm text-center transition-colors duration-200"
                   >
-                    franco@francobalich.com
+                    Escribir por LinkedIn
                   </a>
                   <a
-                    href="https://linkedin.com/in/francobalich"
+                    href="https://instagram.com/francobalich"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-3 rounded-xl glass glass-hover text-zinc-300 hover:text-zinc-100 font-medium text-sm text-center transition-all duration-200"
                   >
-                    Escribir por LinkedIn
+                    Escribir por Instagram
                   </a>
                 </div>
               </div>
@@ -211,18 +213,7 @@ export default function BioPage() {
             <h2 className="text-2xl font-bold text-zinc-100 mb-6">
               Redes y contacto
             </h2>
-            <div className="flex flex-col gap-4">
-              <p className="text-zinc-400">
-                Email directo:{" "}
-                <a
-                  href="mailto:franco@francobalich.com"
-                  className="text-blue-400 hover:text-blue-300 transition-colors"
-                >
-                  franco@francobalich.com
-                </a>
-              </p>
-              <SocialLinks />
-            </div>
+            <SocialLinks />
           </section>
 
         </div>

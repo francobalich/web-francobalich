@@ -21,11 +21,6 @@ const icons = {
       <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
     </svg>
   ),
-  email: (
-    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-    </svg>
-  ),
 };
 
 interface SocialLinksProps {
@@ -42,8 +37,8 @@ export default function SocialLinks({ className = "", size = "md" }: SocialLinks
         <a
           key={social.label}
           href={social.href}
-          target={social.icon === "email" ? undefined : "_blank"}
-          rel={social.icon === "email" ? undefined : "noopener noreferrer"}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label={social.label}
           className={`${sizeClass} flex items-center justify-center rounded-xl glass glass-hover text-zinc-400 hover:text-zinc-100 transition-colors duration-200`}
         >
