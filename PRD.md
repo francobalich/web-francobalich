@@ -596,84 +596,152 @@ public/
 
 ## 12. Plan de Desarrollo
 
-### Fase 1 — Fundaciones y Home (MVP visual)
-**Objetivo**: Tener la página principal completamente terminada y deployada.
+### Fase 0 — Infraestructura y Entorno Local
+**Objetivo**: Entorno local funcionando para desarrollar, y entorno productivo listo para deployar.
 
-- [ ] Design tokens en Tailwind (colores, glass mixin, sombras)
-- [ ] Componente `GlassCard` base reutilizable
-- [ ] Layout raíz: Navbar (desktop + mobile hamburger) + Footer
-- [ ] Sección Hero con foto, nombre, roles, socials y CTAs
-- [ ] Sección Proyectos: 6 cards con datos placeholder
-- [ ] Sección Charlas: preview con datos placeholder
-- [ ] Sección Blog: empty state elegante
-- [ ] `data/social.ts` con todos los links de redes
-- [ ] SEO base: metadata, OG estático, robots, sitemap
-- [ ] Deploy en AWS EC2 + configurar nginx + PM2
-- [ ] Dominio `francobalich.com` apuntando a EC2
-- [ ] SSL con Let's Encrypt (Certbot)
-- [ ] Responsive completo mobile + tablet + desktop
+**Entorno local (primero — desbloquea todas las fases siguientes)**
+- [ ] Clonar repo, instalar dependencias (`npm install`)
+- [ ] Crear `.env.example` con todas las variables necesarias (sin valores reales)
+- [ ] Crear `.env.local` con credenciales reales para desarrollo
+- [ ] Verificar `npm run dev` → `localhost:3000` corre correctamente
+- [ ] Verificar `localhost:3000/admin` accesible (Payload CMS)
 
-**Resultado**: El sitio está online, se ve profesional, posiciona correctamente.
+**Supabase (configurar antes de cualquier código que lo use)**
+- [ ] Crear proyecto en Supabase (free tier)
+- [ ] Copiar `DATABASE_URL` → `.env.local`
+- [ ] Crear bucket en Supabase Storage para imágenes del blog
+- [ ] Configurar Supabase Auth: habilitar email/password + OAuth (Google o GitHub)
+- [ ] Copiar `SUPABASE_URL` y `SUPABASE_ANON_KEY` → `.env.local`
+
+**AWS EC2 (producción — se configura cuando el sitio esté listo para lanzar)**
+- [ ] Configurar instancia EC2 (Ubuntu, mínimo t3.small)
+- [ ] Instalar Node.js, npm, PM2, nginx, Certbot
+- [ ] Configurar nginx como reverse proxy → Next.js en puerto 3000
+- [ ] SSL con Let's Encrypt — `francobalich.com` con HTTPS
+- [ ] Apuntar dominio `francobalich.com` → IP pública de la EC2
+- [ ] Configurar variables de entorno de producción en el servidor
+
+**CI/CD**
+- [ ] GitHub Actions: push a `main` → build → deploy automático a EC2 vía SSH
+- [ ] Verificar que el deploy automático funciona end-to-end
+
+**Flujo de trabajo durante el desarrollo**
+```
+Desarrollar en local (npm run dev)
+  → Probar en localhost:3000 y localhost:3000/admin
+  → git push main
+  → GitHub Actions deploya a EC2 automáticamente
+  → francobalich.com actualizado
+```
+
+**Resultado**: `localhost:3000` funciona, Supabase conectado, EC2 lista y CI/CD activo.
 
 ---
 
-### Fase 2 — Secciones Internas
+### Fase 1 — MVP: Design System + Home
+**Objetivo**: La home es el MVP. Online, diseño glassmorphism completo, posicionada en Google. Todo lo demás se construye después de esto.
 
-- [ ] Página `/proyectos` con grid completo y datos placeholder
-- [ ] Página `/charlas` con listado completo
-- [ ] Página `/links` (hub estilo Linktree, sin nav/footer)
-- [ ] Completar datos reales de proyectos en `data/projects.ts`
-- [ ] Completar datos reales de charlas en `data/talks.ts`
+**Design system**
+- [ ] Design tokens en Tailwind: paleta dark/blue/cyan, glass mixin, sombras, tipografía
+- [ ] Componente `GlassCard` base reutilizable (backdrop-blur, borde semitransparente, hover glow)
+- [ ] Componente `Badge` para tags y estados
+- [ ] Componente `SocialLinks` con íconos SVG inline
+
+**Layout**
+- [ ] Navbar fija con glass effect — links de navegación desktop
+- [ ] Hamburger menu full-screen para mobile
+- [ ] Footer con redes y volver al inicio
+
+**Secciones de la home**
+- [ ] Hero: nombre, roles, foto de perfil, íconos sociales, CTAs
+- [ ] Proyectos: 6 cards placeholder con `data/projects.ts`
+- [ ] Charlas: preview 3 items con `data/talks.ts`
+- [ ] Blog: empty state elegante (sin posts aún)
+- [ ] `data/social.ts` con todos los links de redes
+
+**SEO y deploy**
+- [ ] Metadata base, OG image estática, `robots.ts`, `sitemap.ts`
+- [ ] JSON-LD tipo `Person` en la home
+- [ ] Responsive: mobile 375px + tablet 768px + desktop 1440px
+- [ ] Deploy en EC2 vía GitHub Actions
+
+**Resultado**: `francobalich.com` online, dark glassmorphism, mobile-first, indexable por Google.
+
+---
+
+### Fase 2 — Secciones y Contenido Real
+**Objetivo**: Todas las rutas funcionando con información real de Franco.
+
+- [ ] Página `/proyectos` — grid completo con datos reales en `data/projects.ts`
+- [ ] Página `/charlas` — listado completo con datos reales en `data/talks.ts`
+- [ ] Página `/links` — hub estilo Linktree, sin navbar ni footer
 - [ ] Imágenes reales de proyectos en `/public/images/projects/`
+- [ ] Vanity URL `links.francobalich.com` → redirect 301 a `/links`
 
-**Resultado**: Todas las rutas principales funcionan con contenido real.
+**Resultado**: El portafolio muestra trabajo real. El link de Instagram ya puede apuntar a `links.francobalich.com`.
 
 ---
 
 ### Fase 3 — Bio y Kit de Prensa
+**Objetivo**: Organizadores de eventos y medios tienen todo sin pedirlo por DM.
 
-- [ ] Página `/bio` con biografías corta y larga
-- [ ] Galería de fotos de eventos con metadatos
-- [ ] Sección de expertise
-- [ ] Botón "Descargar Kit" con ZIP generado o estático
+- [ ] Página `/bio` — bio corta (100 palabras) y larga (300 palabras) con botón "Copiar"
+- [ ] Sección de áreas de expertise (badges)
+- [ ] Social proof — logos de eventos y organizaciones
+- [ ] CTA explícito "Invitame a hablar" con email y LinkedIn
+- [ ] Galería de fotos con metadatos (evento, año, crédito)
+- [ ] Botón "Descargar Kit de Prensa" (ZIP con foto + bio)
 - [ ] OG image propia para `/bio`
 
-**Resultado**: Organizadores de eventos tienen todo sin pedirlo.
+**Resultado**: `/bio` funciona como media kit profesional.
 
 ---
 
-### Fase 4 — Blog con Payload CMS
+### Fase 4 — Blog con Payload CMS + Supabase
+**Objetivo**: Panel de escritura online, publicar posts sin tocar código ni hacer deploy.
 
-- [ ] Instalar y configurar Payload CMS v3 en el proyecto Next.js
-- [ ] Configurar conexión a PostgreSQL en AWS
-- [ ] Configurar adaptador S3 de Payload para imágenes
-- [ ] Definir colección `Posts` (título, slug, excerpt, cover, tags, contenido Lexical, estado)
-- [ ] Definir colección `Media` (imágenes en S3)
-- [ ] Página `/blog` con listado de posts desde DB + empty state elegante
-- [ ] Página `/blog/[slug]` con layout de lectura + on-demand revalidation
-- [ ] Live preview configurado en el admin panel
-- [ ] Syntax highlighting en bloques de código del editor
-- [ ] OG images dinámicas por post con `next/og`
-- [ ] Structured data `Article` (JSON-LD)
-- [ ] Sitemap actualizado con rutas de blog desde DB
-- [ ] Webhook de revalidación: publicar post → página actualiza al instante
-- [ ] Primer post publicado desde el panel
+**Setup Payload + Supabase**
+- [ ] Instalar Payload CMS v3 en el proyecto Next.js
+- [ ] Conectar Payload a Supabase PostgreSQL vía `DATABASE_URL`
+- [ ] Configurar adaptador de Supabase Storage para imágenes del editor
+- [ ] Integrar Supabase Auth como sistema de login del panel admin
+- [ ] Proteger ruta `/admin` con middleware que verifica sesión de Supabase
 
-**Resultado**: Blog funcional con panel web en `francobalich.com/admin`. Publicás desde el browser, sin código, sin deploy.
+**Colecciones de Payload**
+- [ ] Colección `Posts`: título, slug, excerpt, cover, tags, cuerpo (Lexical), estado (borrador/publicado)
+- [ ] Colección `Media`: imágenes subidas a Supabase Storage desde el editor
+
+**Blog público**
+- [ ] Página `/blog` — listado de posts desde Supabase + empty state
+- [ ] Página `/blog/[slug]` — layout de lectura, max 680px, tipografía optimizada
+- [ ] Syntax highlighting en bloques de código
+- [ ] Footer del post: compartir en Twitter/X y LinkedIn
+- [ ] Navegación: post anterior / siguiente
+
+**Tiempo real y SEO**
+- [ ] Live preview en el admin: iframe del post mientras escribís
+- [ ] Webhook: publicar → Next.js revalida la ruta al instante
+- [ ] OG image dinámica por post con `next/og`
+- [ ] JSON-LD tipo `Article` por post
+- [ ] Sitemap actualizado con rutas de blog desde Supabase
+
+**Resultado**: Panel en `francobalich.com/admin`. Escribís, publicás, el post aparece online en segundos.
 
 ---
 
-### Fase 5 — Pulimiento final
+### Fase 5 — Pulimiento y Producción
+**Objetivo**: Calidad de producción. Lighthouse ≥ 90 en todo.
 
-- [ ] Animaciones de entrada con Intersection Observer (sin dependencias) o Framer Motion
-- [ ] `prefers-reduced-motion` aplicado
-- [ ] Lighthouse audit → corregir hasta ≥ 90 en todo
-- [ ] Testing en Safari, Firefox y Chrome (desktop + mobile)
-- [ ] Testing en iPhone (Safari) y Android (Chrome)
-- [ ] Configurar Vercel Analytics (opcional, 1 click)
-- [ ] Revisar todos los `alt`, `aria-label` y semántica HTML
+- [ ] Animaciones de entrada (Intersection Observer, sin dependencias pesadas)
+- [ ] `prefers-reduced-motion` respetado en todas las animaciones
+- [ ] Lighthouse audit por ruta → corregir hasta ≥ 90 Performance, SEO, Accessibility
+- [ ] Testing en Safari, Firefox y Chrome — desktop y mobile
+- [ ] Testing manual en iPhone (Safari) y Android (Chrome)
+- [ ] Configurar UptimeRobot para monitoreo de uptime
+- [ ] Revisar todos los `aria-label`, `alt` y semántica HTML
+- [ ] Upgrade Supabase a $25/mes si el pausing molesta en producción
 
-**Resultado**: Producto terminado, con calidad de producción.
+**Resultado**: Producto terminado, con calidad de producción real.
 
 ---
 
