@@ -1,8 +1,8 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Portfolio from "./components/Portfolio";
+import ProjectsPreview from "./components/ProjectsPreview";
+import TalksPreview from "./components/TalksPreview";
+import BlogPreview from "./components/BlogPreview";
 import Footer from "./components/Footer";
 
 export default function Home() {
@@ -11,9 +11,9 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Portfolio />
+        <ProjectsPreview />
+        <TalksPreview />
+        <BlogPreview />
       </main>
       <Footer />
     </>

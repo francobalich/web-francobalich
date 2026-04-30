@@ -7,3 +7,37 @@
 html {
   scroll-behavior: smooth;
 }
+
+body {
+  background-color: #09090b;
+  color: #f4f4f5;
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-blue {
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-hover {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .glass-hover:hover {
+    border-color: rgba(59, 130, 246, 0.35);
+    box-shadow: 0 0 40px -12px rgba(59, 130, 246, 0.25);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 60px -15px rgba(59, 130, 246, 0.5);
+  }
+}
