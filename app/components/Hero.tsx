@@ -3,10 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 const stats = [
-  { label: "Experiencia", value: "+5 años" },
-  { label: "Formación", value: "Doctorando" },
-  { label: "Comunidad", value: "+120k seguidores" },
   { label: "Laboratorio", value: "Lab Creativo 3D" },
+  { label: "Formación", value: "Doctorando" },
+  { label: "Especialización", value: "IoT · Datos · Web" },
+  { label: "Ubicación", value: "Argentina" },
 ];
 
 export default function Hero() {
