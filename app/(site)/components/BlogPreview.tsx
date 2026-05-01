@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import GlassCard from "./ui/GlassCard";
 import Badge from "./ui/Badge";
+import FadeIn from "./ui/FadeIn";
 import { getPayloadClient } from "@/lib/payload";
 import { formatDate } from "@/data/blog";
 
@@ -19,15 +20,16 @@ export default async function BlogPreview() {
     return (
       <section id="blog" className="py-24">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="mb-12">
+          <FadeIn className="mb-12">
             <p className="text-blue-400 text-sm font-medium tracking-wider uppercase mb-2">
               Contenido
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-zinc-100 tracking-tight">
               Blog
             </h2>
-          </div>
+          </FadeIn>
 
+          <FadeIn delay={100}>
           <GlassCard hover={false} className="p-12 text-center max-w-lg mx-auto">
             <div className="w-12 h-12 rounded-2xl glass-blue flex items-center justify-center mx-auto mb-4">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} className="text-blue-400">
@@ -57,6 +59,7 @@ export default async function BlogPreview() {
               </a>
             </div>
           </GlassCard>
+          </FadeIn>
         </div>
       </section>
     );
@@ -65,7 +68,7 @@ export default async function BlogPreview() {
   return (
     <section id="blog" className="py-24">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-end justify-between mb-12">
+        <FadeIn className="flex items-end justify-between mb-12">
           <div>
             <p className="text-blue-400 text-sm font-medium tracking-wider uppercase mb-2">
               Contenido
@@ -83,10 +86,10 @@ export default async function BlogPreview() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
-        </div>
+        </FadeIn>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {posts.map((post) => {
+          {posts.map((post, i) => {
             const coverUrl =
               typeof post.coverImage === "object" && post.coverImage
                 ? (post.coverImage as { url?: string }).url
@@ -95,7 +98,8 @@ export default async function BlogPreview() {
             const publishedAt = post.publishedAt as string | null;
 
             return (
-              <Link key={post.id} href={`/blog/${post.slug}`} className="group">
+              <FadeIn key={post.id} delay={i * 100}>
+              <Link href={`/blog/${post.slug}`} className="group h-full block">
                 <GlassCard className="overflow-hidden h-full flex flex-col">
                   <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 border-b border-white/[0.05] flex-shrink-0 relative overflow-hidden">
                     {coverUrl ? (
@@ -133,6 +137,7 @@ export default async function BlogPreview() {
                   </div>
                 </GlassCard>
               </Link>
+              </FadeIn>
             );
           })}
         </div>

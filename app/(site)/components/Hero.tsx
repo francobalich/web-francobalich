@@ -14,21 +14,19 @@ export default function Hero() {
     <section id="hero" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 w-full py-16 md:py-24">
 
-        {/* Descriptor line */}
-        <div className="flex items-center gap-4 mb-10">
+        {/* Descriptor */}
+        <div className="flex items-center gap-4 mb-10 anim-hero delay-0">
           <span className="h-px w-10 bg-blue-500 flex-shrink-0" />
           <span className="text-sm md:text-base text-blue-400 font-medium tracking-widest uppercase">
             Data Engineer · Full Stack · Docente · Creador de contenido
           </span>
         </div>
 
-        {/* Main grid: nombre (izq) + foto (der) */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-10 lg:gap-20 items-stretch">
 
-          {/* Nombre + bio + CTAs */}
+          {/* Texto */}
           <div className="flex flex-col gap-8 justify-center">
-
-            <h1 className="font-bold leading-none tracking-tight">
+            <h1 className="font-bold leading-none tracking-tight anim-hero delay-100">
               <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-zinc-100">
                 Franco
               </span>
@@ -37,7 +35,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <div className="flex flex-col gap-3 max-w-xl">
+            <div className="flex flex-col gap-3 max-w-xl anim-hero delay-200">
               <p className="text-zinc-300 text-xl md:text-2xl font-light leading-snug">
                 Data Engineer · Docente e Investigador
               </p>
@@ -48,7 +46,7 @@ export default function Hero() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 anim-hero delay-300">
               <Link
                 href="/projects"
                 className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-base font-medium transition-colors duration-200"
@@ -63,11 +61,13 @@ export default function Hero() {
               </Link>
             </div>
 
-            <SocialLinks />
+            <div className="anim-hero delay-400">
+              <SocialLinks />
+            </div>
           </div>
 
           {/* Foto */}
-          <div className="flex items-stretch justify-center lg:justify-end">
+          <div className="flex items-stretch justify-center lg:justify-end anim-hero-fade delay-300">
             <div className="relative w-80 md:w-96 min-h-80">
               <div className="absolute -inset-4 rounded-[2rem] glow-blue opacity-40 blur-2xl" />
               <div className="relative w-full h-full rounded-3xl border border-blue-500/20 overflow-hidden">
@@ -79,7 +79,6 @@ export default function Hero() {
                   priority
                   sizes="(max-width: 768px) 320px, 384px"
                 />
-                {/* Overlay inferior con degradado */}
                 <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-zinc-950/60 to-transparent" />
               </div>
             </div>
@@ -87,9 +86,9 @@ export default function Hero() {
 
         </div>
 
-        {/* Stats row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-10 border-t border-white/[0.06]">
-          {stats.map((stat, i) => (
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-10 border-t border-white/[0.06] anim-hero delay-500">
+          {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col gap-1.5">
               <span className="text-xs text-zinc-600 uppercase tracking-widest">
                 {stat.label}
@@ -97,9 +96,6 @@ export default function Hero() {
               <span className="text-zinc-200 font-medium text-base md:text-lg">
                 {stat.value}
               </span>
-              {i < stats.length - 1 && (
-                <div className="hidden md:block absolute" />
-              )}
             </div>
           ))}
         </div>
