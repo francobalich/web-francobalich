@@ -596,11 +596,11 @@ public/
 
 ## 12. Plan de Desarrollo
 
-> **Estado al 30 de abril 2026**: Fases 1, 2 y 3 completadas. Sitio online en `francobalich.com` con HTTPS. CI/CD pendiente.
+> **Estado al 1 de mayo 2026**: Fases 0, 1, 2 y 3 completadas. Sitio online en `francobalich.com` con HTTPS y CI/CD activo. Próximo: contenido real (Fase 2/3) y Blog con Payload CMS (Fase 4).
 
 ---
 
-### Fase 0 — Infraestructura y Entorno Local ✅ (CI/CD pendiente)
+### Fase 0 — Infraestructura y Entorno Local ✅
 **Objetivo**: Entorno local funcionando para desarrollar, y entorno productivo listo para deployar.
 
 **Entorno local**
@@ -623,9 +623,9 @@ public/
 - [x] Apuntar dominio `francobalich.com` → IP pública de la EC2
 - [x] Configurar variables de entorno de producción en el servidor
 
-**CI/CD** ← pendiente
-- [ ] GitHub Actions: push a `main` → build → deploy automático a EC2 vía SSH
-- [ ] Verificar que el deploy automático funciona end-to-end
+**CI/CD** ✅
+- [x] GitHub Actions: push a `main` → build → deploy automático a EC2 vía SSH
+- [x] Verificar que el deploy automático funciona end-to-end
 
 **Flujo de trabajo durante el desarrollo**
 ```
