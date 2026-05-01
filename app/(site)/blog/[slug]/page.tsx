@@ -21,27 +21,41 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { docs } = await payload.find({
     collection: "posts",
     where: { slug: { equals: slug }, status: { equals: "published" } },
-    depth: 1,
+    depth: 0,
     limit: 1,
   });
   const post = docs[0];
   if (!post) return {};
 
-  const coverUrl =
-    typeof post.coverImage === "object" && post.coverImage
-      ? (post.coverImage as { url?: string }).url
-      : undefined;
+  const postUrl = `https://francobalich.com/blog/${post.slug}`;
+  const tags = (post.tags ?? []).map((t: unknown) => (t as { tag: string }).tag);
+  const publishedAt = post.publishedAt as string | undefined;
+  const updatedAt = post.updatedAt as string | undefined;
 
   return {
     title: `${post.title} — Franco Balich`,
     description: post.excerpt,
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
+      url: postUrl,
+      siteName: "Franco Balich",
+      locale: "es_AR",
       type: "article",
-      publishedTime: post.publishedAt as string | undefined,
+      publishedTime: publishedAt,
+      modifiedTime: updatedAt,
       authors: ["Franco Balich"],
-      ...(coverUrl && { images: [coverUrl] }),
+      tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} — Franco Balich`,
+      description: post.excerpt,
+      creator: "@francobalich",
+      site: "@francobalich",
     },
   };
 }
@@ -106,10 +120,28 @@ export default async function PostPage({ params }: Props) {
       "@type": "Person",
       name: "Franco Balich",
       url: "https://francobalich.com",
+      sameAs: [
+        "https://linkedin.com/in/francobalich",
+        "https://github.com/francobalich",
+        "https://twitter.com/francobalich",
+      ],
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Franco Balich",
+      url: "https://francobalich.com",
     },
     ...(publishedAt && { datePublished: publishedAt }),
+    dateModified: post.updatedAt as string,
     ...(coverUrl && { image: coverUrl }),
+    ...(tags.length > 0 && { keywords: tags.join(", ") }),
     url: postUrl,
+    inLanguage: "es-AR",
+    isPartOf: {
+      "@type": "Blog",
+      name: "Blog — Franco Balich",
+      url: "https://francobalich.com/blog",
+    },
   };
 
   return (
