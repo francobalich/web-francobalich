@@ -111,7 +111,7 @@ export default async function BlogPage() {
             </h1>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {posts.map((post) => {
               const coverUrl =
                 typeof post.coverImage === "object" && post.coverImage
@@ -123,14 +123,14 @@ export default async function BlogPage() {
               return (
                 <Link key={post.id} href={`/blog/${post.slug}`} className="group">
                   <GlassCard className="overflow-hidden h-full flex flex-col">
-                    <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 border-b border-white/[0.05] flex-shrink-0 relative overflow-hidden">
+                    <div className="h-56 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 border-b border-white/[0.05] flex-shrink-0 relative overflow-hidden">
                       {coverUrl ? (
                         <Image
                           src={coverUrl}
                           alt={post.title}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          sizes="(max-width: 768px) 100vw, 50vw"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
@@ -139,8 +139,8 @@ export default async function BlogPage() {
                       )}
                     </div>
 
-                    <div className="p-6 flex flex-col gap-3 flex-1">
-                      <div className="flex items-center gap-2 text-xs text-zinc-600">
+                    <div className="p-7 flex flex-col gap-4 flex-1">
+                      <div className="flex items-center gap-2 text-xs text-zinc-500">
                         {publishedAt && (
                           <>
                             <time dateTime={publishedAt}>
@@ -152,15 +152,15 @@ export default async function BlogPage() {
                         <span>{readingTime(post.content as object)} min de lectura</span>
                       </div>
 
-                      <h2 className="text-lg font-semibold text-zinc-100 group-hover:text-blue-300 transition-colors duration-200 leading-snug">
+                      <h2 className="text-xl font-semibold text-zinc-100 group-hover:text-blue-300 transition-colors duration-200 leading-snug">
                         {post.title}
                       </h2>
 
-                      <p className="text-sm text-zinc-500 leading-relaxed flex-1">
+                      <p className="text-base text-zinc-400 leading-relaxed flex-1">
                         {post.excerpt}
                       </p>
 
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap gap-1.5 pt-1">
                         {tags.map((tag: string) => (
                           <Badge key={tag}>{tag}</Badge>
                         ))}

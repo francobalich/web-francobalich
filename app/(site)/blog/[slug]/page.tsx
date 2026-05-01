@@ -152,70 +152,77 @@ export default async function PostPage({ params }: Props) {
       />
       <Navbar />
       <main className="pt-24 pb-24">
-        <div className="max-w-[680px] mx-auto px-6">
+        <div className="max-w-[960px] mx-auto px-6">
 
-          <header className="mb-10">
-            <div className="flex items-center gap-2 text-xs text-zinc-600 mb-4">
-              <Link href="/blog" className="hover:text-zinc-400 transition-colors">
-                Blog
-              </Link>
-              <span>/</span>
-              <span className="text-zinc-500">{post.title}</span>
-            </div>
+          {/* Breadcrumb — outside the reading card */}
+          <div className="flex items-center gap-2 text-xs text-zinc-500 mb-6">
+            <Link href="/blog" className="hover:text-zinc-300 transition-colors">
+              Blog
+            </Link>
+            <span className="text-zinc-600">/</span>
+            <span className="text-zinc-400 truncate">{post.title}</span>
+          </div>
 
-            <div className="flex flex-wrap gap-1.5 mb-5">
-              {tags.map((tag: string) => (
-                <Badge key={tag} variant="blue">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+          {/* Reading surface card */}
+          <div className="bg-zinc-800/50 border border-zinc-700/60 rounded-3xl px-8 md:px-14 py-10 md:py-12 mb-10 backdrop-blur-sm">
 
-            <h1 className="text-3xl md:text-4xl font-bold text-zinc-100 leading-tight mb-4">
-              {post.title}
-            </h1>
+            <header className="mb-10">
+              <div className="flex flex-wrap gap-1.5 mb-5">
+                {tags.map((tag: string) => (
+                  <Badge key={tag} variant="blue">
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
 
-            <div className="flex items-center gap-3 text-sm text-zinc-500 pb-6 border-b border-white/[0.06]">
-              {publishedAt && (
-                <>
-                  <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
-                  <span>·</span>
-                </>
-              )}
-              <span>
-                {Math.max(1, Math.round(contentHtml.split(/\s+/).length / 200))} min de lectura
-              </span>
-            </div>
-          </header>
+              <h1 className="text-3xl md:text-4xl font-bold text-zinc-100 leading-tight mb-4">
+                {post.title}
+              </h1>
 
-          {coverUrl && (
-            <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-10 border border-white/[0.06]">
-              <Image
-                src={coverUrl}
-                alt={post.title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 680px"
-                priority
-              />
-            </div>
-          )}
+              <div className="flex items-center gap-3 text-sm text-zinc-500 pb-6 border-b border-white/[0.06]">
+                {publishedAt && (
+                  <>
+                    <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
+                    <span>·</span>
+                  </>
+                )}
+                <span>
+                  {Math.max(1, Math.round(contentHtml.split(/\s+/).length / 200))} min de lectura
+                </span>
+              </div>
+            </header>
 
-          <article
-            className="prose prose-invert prose-zinc max-w-none
-              prose-headings:font-bold prose-headings:text-zinc-100
-              prose-p:text-zinc-300 prose-p:leading-relaxed
-              prose-a:text-blue-400 hover:prose-a:text-blue-300
-              prose-strong:text-zinc-100
-              prose-code:text-cyan-400 prose-code:bg-white/[0.06] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
-              prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-white/[0.08] prose-pre:rounded-xl
-              prose-blockquote:border-l-blue-500 prose-blockquote:text-zinc-400
-              prose-img:rounded-xl prose-img:border prose-img:border-white/[0.06]
-              prose-hr:border-white/[0.06]"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
+            {coverUrl && (
+              <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-10 border border-white/[0.06]">
+                <Image
+                  src={coverUrl}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 720px"
+                  priority
+                />
+              </div>
+            )}
 
-          <div className="mt-12 pt-8 border-t border-white/[0.06]">
+            <article
+              className="prose prose-lg prose-invert prose-zinc max-w-none
+                prose-headings:font-bold prose-headings:text-zinc-100
+                prose-p:text-zinc-300 prose-p:leading-relaxed
+                prose-a:text-blue-400 hover:prose-a:text-blue-300
+                prose-strong:text-zinc-100
+                prose-code:text-cyan-400 prose-code:bg-white/[0.06] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
+                prose-pre:bg-zinc-950 prose-pre:border prose-pre:border-white/[0.08] prose-pre:rounded-xl
+                prose-blockquote:border-l-blue-500 prose-blockquote:text-zinc-400
+                prose-img:rounded-xl prose-img:border prose-img:border-white/[0.06]
+                prose-hr:border-white/[0.06]"
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
+            />
+
+          </div>
+
+          {/* Share — outside the card */}
+          <div className="mb-8">
             <p className="text-sm text-zinc-500 mb-4">Compartir</p>
             <div className="flex gap-3">
               <a
@@ -243,17 +250,18 @@ export default async function PostPage({ params }: Props) {
             </div>
           </div>
 
+          {/* Prev / next — outside the card */}
           {(prev || next) && (
             <nav
               aria-label="Navegación entre posts"
-              className="mt-10 pt-8 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-2 gap-4"
+              className="pt-6 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-2 gap-4"
             >
               {next && (
                 <Link
                   href={`/blog/${next.slug}`}
                   className="flex flex-col gap-1 p-4 rounded-xl glass glass-hover transition-all duration-200 group"
                 >
-                  <span className="text-xs text-zinc-600">← Anterior</span>
+                  <span className="text-xs text-zinc-500">← Anterior</span>
                   <span className="text-sm text-zinc-300 group-hover:text-zinc-100 transition-colors leading-snug">
                     {next.title}
                   </span>
@@ -264,7 +272,7 @@ export default async function PostPage({ params }: Props) {
                   href={`/blog/${prev.slug}`}
                   className="flex flex-col gap-1 p-4 rounded-xl glass glass-hover transition-all duration-200 group sm:text-right sm:items-end"
                 >
-                  <span className="text-xs text-zinc-600">Siguiente →</span>
+                  <span className="text-xs text-zinc-500">Siguiente →</span>
                   <span className="text-sm text-zinc-300 group-hover:text-zinc-100 transition-colors leading-snug">
                     {prev.title}
                   </span>
