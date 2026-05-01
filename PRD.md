@@ -24,7 +24,7 @@ Un portafolio personal de nivel profesional senior que funcione como hub central
 | Dominio principal | `francobalich.com` | Todo el contenido bajo un dominio acumula autoridad SEO |
 | Subdominio contenido | ❌ No — usar `/ruta` | `blog.francobalich.com` = sitio separado para Google, autoridad cero |
 | Vanity URL | `links.francobalich.com` → redirect 301 a `/links` | Para bio de Instagram: corta, de marca, sin costo SEO |
-| Formulario de contacto | ❌ No — solo email y redes | Más simple, menos mantenimiento |
+| Formulario de contacto | ❌ No — solo LinkedIn e Instagram | Email eliminado para evitar scraping y spam |
 | Dark/light mode | Dark fijo | Identidad visual de marca |
 | Blog contenido inicial | Sin posts — empty state elegante | Infraestructura lista para escribir |
 | Proyectos | Cards placeholder — completar en fase 2 | Lanzar rápido, completar después |
@@ -596,104 +596,100 @@ public/
 
 ## 12. Plan de Desarrollo
 
-### Fase 0 — Infraestructura y Entorno Local
+> **Estado al 30 de abril 2026**: Fases 1, 2 y 3 completadas. Sitio online en `francobalich.com` con HTTPS. CI/CD pendiente.
+
+---
+
+### Fase 0 — Infraestructura y Entorno Local ✅ (CI/CD pendiente)
 **Objetivo**: Entorno local funcionando para desarrollar, y entorno productivo listo para deployar.
 
-**Entorno local (primero — desbloquea todas las fases siguientes)**
-- [ ] Clonar repo, instalar dependencias (`npm install`)
+**Entorno local**
+- [x] Clonar repo, instalar dependencias (`npm install`)
+- [x] Verificar `npm run dev` → `localhost:4135` corre correctamente
 - [ ] Crear `.env.example` con todas las variables necesarias (sin valores reales)
-- [ ] Crear `.env.local` con credenciales reales para desarrollo
-- [ ] Verificar `npm run dev` → `localhost:3000` corre correctamente
-- [ ] Verificar `localhost:3000/admin` accesible (Payload CMS)
+- [ ] Verificar `localhost:4135/admin` accesible (pendiente — Payload no instalado aún)
 
-**Supabase (configurar antes de cualquier código que lo use)**
+**Supabase (configurar antes de Fase 4)**
 - [ ] Crear proyecto en Supabase (free tier)
 - [ ] Copiar `DATABASE_URL` → `.env.local`
 - [ ] Crear bucket en Supabase Storage para imágenes del blog
-- [ ] Configurar Supabase Auth: habilitar email/password + OAuth (Google o GitHub)
 - [ ] Copiar `SUPABASE_URL` y `SUPABASE_ANON_KEY` → `.env.local`
 
-**AWS EC2 (producción — se configura cuando el sitio esté listo para lanzar)**
-- [ ] Configurar instancia EC2 (Ubuntu, mínimo t3.small)
-- [ ] Instalar Node.js, npm, PM2, nginx, Certbot
-- [ ] Configurar nginx como reverse proxy → Next.js en puerto 3000
-- [ ] SSL con Let's Encrypt — `francobalich.com` con HTTPS
-- [ ] Apuntar dominio `francobalich.com` → IP pública de la EC2
-- [ ] Configurar variables de entorno de producción en el servidor
+**AWS EC2** ✅
+- [x] Configurar instancia EC2
+- [x] Instalar Node.js, npm, PM2, nginx, Certbot
+- [x] Configurar nginx como reverse proxy → Next.js
+- [x] SSL con Let's Encrypt — `francobalich.com` con HTTPS
+- [x] Apuntar dominio `francobalich.com` → IP pública de la EC2
+- [x] Configurar variables de entorno de producción en el servidor
 
-**CI/CD**
+**CI/CD** ← pendiente
 - [ ] GitHub Actions: push a `main` → build → deploy automático a EC2 vía SSH
 - [ ] Verificar que el deploy automático funciona end-to-end
 
 **Flujo de trabajo durante el desarrollo**
 ```
 Desarrollar en local (npm run dev)
-  → Probar en localhost:3000 y localhost:3000/admin
   → git push main
   → GitHub Actions deploya a EC2 automáticamente
   → francobalich.com actualizado
 ```
 
-**Resultado**: `localhost:3000` funciona, Supabase conectado, EC2 lista y CI/CD activo.
+---
+
+### Fase 1 — MVP: Design System + Home ✅
+**Objetivo**: La home es el MVP. Online, diseño glassmorphism completo, posicionada en Google.
+
+**Design system** ✅
+- [x] Design tokens en Tailwind: paleta dark/blue/cyan, glass mixin, sombras, tipografía
+- [x] Componente `GlassCard` base reutilizable (backdrop-blur, borde semitransparente, hover glow)
+- [x] Componente `Badge` para tags y estados
+- [x] Componente `SocialLinks` con íconos SVG inline
+
+**Layout** ✅
+- [x] Navbar fija con glass effect — links de navegación desktop
+- [x] Hamburger menu full-screen para mobile
+- [x] Footer con redes y volver al inicio
+
+**Secciones de la home** ✅
+- [x] Hero: nombre, roles, foto de perfil, íconos sociales, CTAs
+- [x] Proyectos: 6 cards placeholder con `data/projects.ts`
+- [x] Charlas: preview 3 items con `data/talks.ts` (empty state)
+- [x] Blog: empty state elegante (sin posts aún)
+- [x] `data/social.ts` con todos los links de redes (sin email — decisión de producto)
+
+**SEO** ✅
+- [x] Metadata base, OG image generada con `next/og`, `robots.ts`, `sitemap.ts`
+- [x] JSON-LD tipo `Person` en la home
+- [ ] Responsive: validar mobile 375px + tablet 768px + desktop 1440px (pendiente testing formal)
+- [ ] Deploy automático vía GitHub Actions (CI/CD pendiente)
 
 ---
 
-### Fase 1 — MVP: Design System + Home
-**Objetivo**: La home es el MVP. Online, diseño glassmorphism completo, posicionada en Google. Todo lo demás se construye después de esto.
-
-**Design system**
-- [ ] Design tokens en Tailwind: paleta dark/blue/cyan, glass mixin, sombras, tipografía
-- [ ] Componente `GlassCard` base reutilizable (backdrop-blur, borde semitransparente, hover glow)
-- [ ] Componente `Badge` para tags y estados
-- [ ] Componente `SocialLinks` con íconos SVG inline
-
-**Layout**
-- [ ] Navbar fija con glass effect — links de navegación desktop
-- [ ] Hamburger menu full-screen para mobile
-- [ ] Footer con redes y volver al inicio
-
-**Secciones de la home**
-- [ ] Hero: nombre, roles, foto de perfil, íconos sociales, CTAs
-- [ ] Proyectos: 6 cards placeholder con `data/projects.ts`
-- [ ] Charlas: preview 3 items con `data/talks.ts`
-- [ ] Blog: empty state elegante (sin posts aún)
-- [ ] `data/social.ts` con todos los links de redes
-
-**SEO y deploy**
-- [ ] Metadata base, OG image estática, `robots.ts`, `sitemap.ts`
-- [ ] JSON-LD tipo `Person` en la home
-- [ ] Responsive: mobile 375px + tablet 768px + desktop 1440px
-- [ ] Deploy en EC2 vía GitHub Actions
-
-**Resultado**: `francobalich.com` online, dark glassmorphism, mobile-first, indexable por Google.
-
----
-
-### Fase 2 — Secciones y Contenido Real
+### Fase 2 — Secciones y Contenido Real ✅ (contenido pendiente)
 **Objetivo**: Todas las rutas funcionando con información real de Franco.
 
-- [ ] Página `/projects` — grid completo con datos reales en `data/projects.ts`
-- [ ] Página `/talks` — listado completo con datos reales en `data/talks.ts`
-- [ ] Página `/links` — hub estilo Linktree, sin navbar ni footer
+- [x] Página `/projects` — grid completo con `data/projects.ts`
+- [x] Página `/talks` — listado con agrupación próximos/pasados, empty state
+- [x] Página `/links` — hub estilo Linktree, sin navbar ni footer
+- [ ] Datos reales de proyectos en `data/projects.ts` (imágenes, URLs, descripciones)
+- [ ] Datos reales de charlas en `data/talks.ts`
 - [ ] Imágenes reales de proyectos en `/public/images/projects/`
 - [ ] Vanity URL `links.francobalich.com` → redirect 301 a `/links`
 
-**Resultado**: El portafolio muestra trabajo real. El link de Instagram ya puede apuntar a `links.francobalich.com`.
-
 ---
 
-### Fase 3 — Bio y Kit de Prensa
+### Fase 3 — Bio y Kit de Prensa ✅ (contenido pendiente)
 **Objetivo**: Organizadores de eventos y medios tienen todo sin pedirlo por DM.
 
-- [ ] Página `/bio` — bio corta (100 palabras) y larga (300 palabras) con botón "Copiar"
-- [ ] Sección de áreas de expertise (badges)
-- [ ] Social proof — logos de eventos y organizaciones
-- [ ] CTA explícito "Invitame a hablar" con email y LinkedIn
-- [ ] Galería de fotos con metadatos (evento, año, crédito)
-- [ ] Botón "Descargar Kit de Prensa" (ZIP con foto + bio)
-- [ ] OG image propia para `/bio`
-
-**Resultado**: `/bio` funciona como media kit profesional.
+- [x] Página `/bio` — bio corta (~100 palabras) y larga (~300 palabras) con botón "Copiar"
+- [x] Sección de áreas de expertise (badges)
+- [x] CTA explícito "Invitame a hablar" con LinkedIn e Instagram (email eliminado)
+- [x] Botón "Descargar Kit de Prensa" — estructura lista, falta el archivo ZIP
+- [-] Social proof — sección placeholder, pendiente logos de eventos reales
+- [-] Galería de fotos — sección placeholder, pendiente fotos reales
+- [ ] Subir `press-kit.zip` a `/public/press/`
+- [ ] OG image específica para `/bio`
 
 ---
 
@@ -704,25 +700,21 @@ Desarrollar en local (npm run dev)
 - [ ] Instalar Payload CMS v3 en el proyecto Next.js
 - [ ] Conectar Payload a Supabase PostgreSQL vía `DATABASE_URL`
 - [ ] Configurar adaptador de Supabase Storage para imágenes del editor
-- [ ] Integrar Supabase Auth como sistema de login del panel admin
-- [ ] Proteger ruta `/admin` con middleware que verifica sesión de Supabase
+- [ ] Proteger ruta `/admin` con autenticación de Payload
 
 **Colecciones de Payload**
 - [ ] Colección `Posts`: título, slug, excerpt, cover, tags, cuerpo (Lexical), estado (borrador/publicado)
 - [ ] Colección `Media`: imágenes subidas a Supabase Storage desde el editor
 
-**Blog público**
-- [ ] Página `/blog` — listado de posts desde Supabase + empty state
-- [ ] Página `/blog/[slug]` — layout de lectura, max 680px, tipografía optimizada
+**Blog público** (rutas ya creadas — falta conectar con Payload)
+- [x] Página `/blog` — listado + empty state
+- [x] Página `/blog/[slug]` — layout de lectura 680px, JSON-LD Article, compartir, prev/next
+- [x] `data/blog.ts` — interface `Post`, helpers `readingTime()` y `formatDate()`
+- [ ] Reemplazar array estático por fetch a Payload/Supabase
 - [ ] Syntax highlighting en bloques de código
-- [ ] Footer del post: compartir en Twitter/X y LinkedIn
-- [ ] Navegación: post anterior / siguiente
-
-**Tiempo real y SEO**
-- [ ] Live preview en el admin: iframe del post mientras escribís
+- [ ] Live preview en el admin
 - [ ] Webhook: publicar → Next.js revalida la ruta al instante
 - [ ] OG image dinámica por post con `next/og`
-- [ ] JSON-LD tipo `Article` por post
 - [ ] Sitemap actualizado con rutas de blog desde Supabase
 
 **Resultado**: Panel en `francobalich.com/admin`. Escribís, publicás, el post aparece online en segundos.
@@ -739,7 +731,6 @@ Desarrollar en local (npm run dev)
 - [ ] Testing manual en iPhone (Safari) y Android (Chrome)
 - [ ] Configurar UptimeRobot para monitoreo de uptime
 - [ ] Revisar todos los `aria-label`, `alt` y semántica HTML
-- [ ] Upgrade Supabase a $25/mes si el pausing molesta en producción
 
 **Resultado**: Producto terminado, con calidad de producción real.
 
