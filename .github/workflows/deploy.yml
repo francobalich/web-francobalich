@@ -21,4 +21,4 @@ jobs:
             git pull origin main
             npm ci
             npm run build
-            pm2 restart francobalich --update-env
+            pm2 restart franco --update-env
