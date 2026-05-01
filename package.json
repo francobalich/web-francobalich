@@ -1,41 +1,27 @@
 {
-  "name": "portafolio-francobalich",
-  "version": "1.0.0",
-  "description": "Portafolio profesional de Franco Balich, Director del Laboratorio Creativo 3D, Doctorando en Informática, Full Stack Developer y Data Engineer. Especialista en desarrollo de soluciones IoT, análisis de datos y creación de contenido tecnológico.",
-  "main": "index.js",
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "dev",
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "next dev -p 4135",
+    "build": "next build",
+    "start": "next start -p 4135",
+    "lint": "eslint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/francobalich/Portafolio-FrancoBalich.git"
-  },
-  "keywords": [
-    "Franco Balich",
-    "Laboratorio Creativo 3D",
-    "Full Stack Developer",
-    "Data Engineer",
-    "IoT",
-    "Python",
-    "Análisis de Datos",
-    "Desarrollo Web",
-    "Node.js",
-    "Express",
-    "EJS"
-  ],
-  "author": "Franco Balich",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/francobalich/Portafolio-FrancoBalich/issues"
-  },
-  "homepage": "https://francobalich.com",
   "dependencies": {
-    "dotenv": "^16.0.1",
-    "ejs": "^3.1.8",
-    "express": "^4.18.1",
-    "nodemailer": "^6.7.5",
-    "nodemon": "^2.0.16"
+    "@tailwindcss/typography": "^0.5.19",
+    "next": "16.2.4",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }

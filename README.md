@@ -1,84 +1,36 @@
-# Franco Balich | Director del Laboratorio Creativo 3D
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## 🎯 Descripción
-Portafolio profesional de Franco Balich, Director del Laboratorio Creativo 3D, Doctorando en Informática, Full Stack Developer y Data Engineer. Especialista en desarrollo de soluciones IoT, análisis de datos y creación de contenido tecnológico.
+## Getting Started
 
-## 🚀 Características Principales
-- Desarrollo Full Stack con Python
-- Implementación de soluciones IoT
-- Análisis de datos y Data Engineering
-- Dirección del Laboratorio Creativo 3D
-- Creación de contenido tecnológico
-- Proyectos de innovación e investigación
+First, run the development server:
 
-## 🛠️ Tecnologías
-- Python
-- IoT (Internet de las Cosas)
-- Desarrollo Full Stack
-- Análisis de Datos
-- Node.js
-- Express.js
-- EJS
-- Nodemailer
-
-## 📦 Instalación
-
-1. Clona el repositorio:
-```bash
-git clone https://github.com/francobalich/Portafolio-FrancoBalich.git
-```
-
-2. Instala las dependencias:
-```bash
-npm install
-```
-
-3. Configura las variables de entorno:
-```env
-PORT=3000
-EMAIL_USER=tu_email@ejemplo.com
-EMAIL_PASS=tu_contraseña
-```
-
-4. Inicia el servidor:
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## 🏗️ Estructura del Proyecto
-```
-Portafolio-FrancoBalich/
-├── src/
-│   ├── index.js          # Servidor principal
-│   └── singup-mail.js    # Configuración de correo
-├── views/
-│   ├── css/             # Estilos
-│   ├── js/              # Scripts
-│   ├── img/             # Imágenes
-│   ├── pages/           # Páginas principales
-│   └── partials/        # Componentes reutilizables
-├── package.json
-└── README.md
-```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🚀 Scripts Disponibles
-- `npm start`: Inicia el servidor en modo producción
-- `npm run dev`: Inicia el servidor en modo desarrollo con nodemon
-- `npm test`: Ejecuta los tests
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## 📫 Contacto y Redes Sociales
-- GitHub: [francobalich](https://github.com/francobalich)
-- LinkedIn: [franco-balich](https://www.linkedin.com/in/franco-balich/)
-- YouTube: [Franco Balich](https://www.youtube.com/c/FrancoBalich)
-- Twitch: [francolabs](https://www.twitch.tv/francolabs)
-- Instagram: [francobalich](https://www.instagram.com/francobalich/)
-- Twitter: [francobalich](https://twitter.com/francobalich)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## 📄 Licencia
-Este proyecto está bajo la Licencia ISC.
+## Learn More
 
-## 🔍 Palabras Clave
-Desarrollo Full Stack, Data Engineering, IoT, Python, Laboratorio Creativo 3D, Análisis de Datos, Desarrollo Web, Node.js, Express, EJS, Creador de Contenido Tecnológico, Investigación en Informática, Soluciones Tecnológicas, Innovación, Automatización, Sistemas Inteligentes
+To learn more about Next.js, take a look at the following resources:
 
----
-Desarrollado con ❤️ por Franco Balich
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
