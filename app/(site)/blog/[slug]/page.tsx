@@ -5,49 +5,105 @@ import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Badge from "../../components/ui/Badge";
-import { posts, formatDate, readingTime } from "@/data/blog";
+import { getPayloadClient } from "@/lib/payload";
+import { formatDate } from "@/data/blog";
+import { convertLexicalToHTML } from "@payloadcms/richtext-lexical/html";
+import type { SerializedEditorState, SerializedLexicalNode } from "@payloadcms/richtext-lexical/lexical";
+import { highlightCodeBlocks } from "@/lib/highlight";
+
+export const revalidate = 3600; // fallback: revalidar cada hora
 
 type Props = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
-  return posts
-    .filter((p) => p.status === "published")
-    .map((p) => ({ slug: p.slug }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = posts.find((p) => p.slug === slug && p.status === "published");
-
+  const payload = await getPayloadClient();
+  const { docs } = await payload.find({
+    collection: "posts",
+    where: { slug: { equals: slug }, status: { equals: "published" } },
+    depth: 0,
+    limit: 1,
+  });
+  const post = docs[0];
   if (!post) return {};
+
+  const postUrl = `https://francobalich.com/blog/${post.slug}`;
+  const tags = (post.tags ?? []).map((t: unknown) => (t as { tag: string }).tag);
+  const publishedAt = post.publishedAt as string | undefined;
+  const updatedAt = post.updatedAt as string | undefined;
 
   return {
     title: `${post.title} — Franco Balich`,
     description: post.excerpt,
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
+      url: postUrl,
+      siteName: "Franco Balich",
+      locale: "es_AR",
       type: "article",
-      publishedTime: post.publishedAt,
+      publishedTime: publishedAt,
+      modifiedTime: updatedAt,
       authors: ["Franco Balich"],
-      ...(post.coverImage && { images: [post.coverImage] }),
+      tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} — Franco Balich`,
+      description: post.excerpt,
+      creator: "@francobalich",
+      site: "@francobalich",
     },
   };
 }
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
-  const post = posts.find((p) => p.slug === slug && p.status === "published");
+  const payload = await getPayloadClient();
 
-  if (!post) notFound();
+  const { docs: allPosts } = await payload.find({
+    collection: "posts",
+    where: { status: { equals: "published" } },
+    sort: "-publishedAt",
+    depth: 1,
+  });
 
-  const publishedPosts = posts.filter((p) => p.status === "published");
-  const currentIndex = publishedPosts.findIndex((p) => p.slug === slug);
-  const prev = currentIndex > 0 ? publishedPosts[currentIndex - 1] : null;
-  const next =
-    currentIndex < publishedPosts.length - 1
-      ? publishedPosts[currentIndex + 1]
+  const currentIndex = allPosts.findIndex((p) => p.slug === slug);
+  if (currentIndex === -1) notFound();
+
+  const post = allPosts[currentIndex];
+  const prev = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+  const next = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+
+  const coverUrl =
+    typeof post.coverImage === "object" && post.coverImage
+      ? (post.coverImage as { url?: string }).url
       : null;
+  const tags = (post.tags ?? []).map((t: unknown) => (t as { tag: string }).tag);
+  const publishedAt = post.publishedAt as string | null;
+
+  const rawHtml = convertLexicalToHTML({
+    data: post.content as SerializedEditorState,
+    disableContainer: true,
+    converters: ({ defaultConverters }) => ({
+      ...defaultConverters,
+      code: ({ node }) => {
+        const lang = (node as unknown as { language?: string }).language ?? "";
+        const text = ((node as unknown as { children?: SerializedLexicalNode[] }).children ?? [])
+          .map((child) => (child as unknown as { text?: string }).text ?? "")
+          .join("");
+        const escaped = text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+        return `<pre><code class="language-${lang}">${escaped}</code></pre>`;
+      },
+    }),
+  });
+  const contentHtml = await highlightCodeBlocks(rawHtml);
 
   const postUrl = `https://francobalich.com/blog/${post.slug}`;
   const shareText = encodeURIComponent(post.title);
@@ -64,10 +120,28 @@ export default async function PostPage({ params }: Props) {
       "@type": "Person",
       name: "Franco Balich",
       url: "https://francobalich.com",
+      sameAs: [
+        "https://linkedin.com/in/francobalich",
+        "https://github.com/francobalich",
+        "https://twitter.com/francobalich",
+      ],
     },
-    datePublished: post.publishedAt,
-    ...(post.coverImage && { image: post.coverImage }),
+    publisher: {
+      "@type": "Person",
+      name: "Franco Balich",
+      url: "https://francobalich.com",
+    },
+    ...(publishedAt && { datePublished: publishedAt }),
+    dateModified: post.updatedAt as string,
+    ...(coverUrl && { image: coverUrl }),
+    ...(tags.length > 0 && { keywords: tags.join(", ") }),
     url: postUrl,
+    inLanguage: "es-AR",
+    isPartOf: {
+      "@type": "Blog",
+      name: "Blog — Franco Balich",
+      url: "https://francobalich.com/blog",
+    },
   };
 
   return (
@@ -80,13 +154,9 @@ export default async function PostPage({ params }: Props) {
       <main className="pt-24 pb-24">
         <div className="max-w-[680px] mx-auto px-6">
 
-          {/* Header */}
           <header className="mb-10">
             <div className="flex items-center gap-2 text-xs text-zinc-600 mb-4">
-              <Link
-                href="/blog"
-                className="hover:text-zinc-400 transition-colors"
-              >
+              <Link href="/blog" className="hover:text-zinc-400 transition-colors">
                 Blog
               </Link>
               <span>/</span>
@@ -94,7 +164,7 @@ export default async function PostPage({ params }: Props) {
             </div>
 
             <div className="flex flex-wrap gap-1.5 mb-5">
-              {post.tags.map((tag) => (
+              {tags.map((tag: string) => (
                 <Badge key={tag} variant="blue">
                   {tag}
                 </Badge>
@@ -106,19 +176,22 @@ export default async function PostPage({ params }: Props) {
             </h1>
 
             <div className="flex items-center gap-3 text-sm text-zinc-500 pb-6 border-b border-white/[0.06]">
-              <time dateTime={post.publishedAt}>
-                {formatDate(post.publishedAt)}
-              </time>
-              <span>·</span>
-              <span>{readingTime(post.content)} min de lectura</span>
+              {publishedAt && (
+                <>
+                  <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
+                  <span>·</span>
+                </>
+              )}
+              <span>
+                {Math.max(1, Math.round(contentHtml.split(/\s+/).length / 200))} min de lectura
+              </span>
             </div>
           </header>
 
-          {/* Cover image */}
-          {post.coverImage && (
+          {coverUrl && (
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-10 border border-white/[0.06]">
               <Image
-                src={post.coverImage}
+                src={coverUrl}
                 alt={post.title}
                 fill
                 className="object-cover"
@@ -128,7 +201,6 @@ export default async function PostPage({ params }: Props) {
             </div>
           )}
 
-          {/* Body */}
           <article
             className="prose prose-invert prose-zinc max-w-none
               prose-headings:font-bold prose-headings:text-zinc-100
@@ -140,10 +212,9 @@ export default async function PostPage({ params }: Props) {
               prose-blockquote:border-l-blue-500 prose-blockquote:text-zinc-400
               prose-img:rounded-xl prose-img:border prose-img:border-white/[0.06]
               prose-hr:border-white/[0.06]"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
 
-          {/* Share */}
           <div className="mt-12 pt-8 border-t border-white/[0.06]">
             <p className="text-sm text-zinc-500 mb-4">Compartir</p>
             <div className="flex gap-3">
@@ -172,31 +243,30 @@ export default async function PostPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Prev / Next */}
           {(prev || next) && (
             <nav
               aria-label="Navegación entre posts"
               className="mt-10 pt-8 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-2 gap-4"
             >
-              {prev && (
+              {next && (
                 <Link
-                  href={`/blog/${prev.slug}`}
+                  href={`/blog/${next.slug}`}
                   className="flex flex-col gap-1 p-4 rounded-xl glass glass-hover transition-all duration-200 group"
                 >
                   <span className="text-xs text-zinc-600">← Anterior</span>
                   <span className="text-sm text-zinc-300 group-hover:text-zinc-100 transition-colors leading-snug">
-                    {prev.title}
+                    {next.title}
                   </span>
                 </Link>
               )}
-              {next && (
+              {prev && (
                 <Link
-                  href={`/blog/${next.slug}`}
+                  href={`/blog/${prev.slug}`}
                   className="flex flex-col gap-1 p-4 rounded-xl glass glass-hover transition-all duration-200 group sm:text-right sm:items-end"
                 >
                   <span className="text-xs text-zinc-600">Siguiente →</span>
                   <span className="text-sm text-zinc-300 group-hover:text-zinc-100 transition-colors leading-snug">
-                    {next.title}
+                    {prev.title}
                   </span>
                 </Link>
               )}

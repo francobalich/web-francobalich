@@ -5,7 +5,10 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import GlassCard from "../components/ui/GlassCard";
 import Badge from "../components/ui/Badge";
-import { posts, formatDate, readingTime } from "@/data/blog";
+import { getPayloadClient } from "@/lib/payload";
+import { formatDate } from "@/data/blog";
+
+export const revalidate = 3600; // fallback: revalidar cada hora
 
 export const metadata: Metadata = {
   title: "Blog — Franco Balich",
@@ -13,10 +16,22 @@ export const metadata: Metadata = {
     "Artículos sobre desarrollo de software, IoT, datos y tecnología.",
 };
 
-export default function BlogPage() {
-  const published = posts.filter((p) => p.status === "published");
+function readingTime(content: object): number {
+  const text = JSON.stringify(content).replace(/<[^>]+>/g, "");
+  const words = text.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
 
-  if (published.length === 0) {
+export default async function BlogPage() {
+  const payload = await getPayloadClient();
+  const { docs: posts } = await payload.find({
+    collection: "posts",
+    where: { status: { equals: "published" } },
+    sort: "-publishedAt",
+    depth: 1,
+  });
+
+  if (posts.length === 0) {
     return (
       <>
         <Navbar />
@@ -97,53 +112,64 @@ export default function BlogPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {published.map((post) => (
-              <Link key={post.id} href={`/blog/${post.slug}`} className="group">
-                <GlassCard className="overflow-hidden h-full flex flex-col">
-                  {/* Cover */}
-                  <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 border-b border-white/[0.05] flex-shrink-0 relative overflow-hidden">
-                    {post.coverImage ? (
-                      <Image
-                        src={post.coverImage}
-                        alt={post.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-zinc-700 text-sm">Sin imagen</span>
+            {posts.map((post) => {
+              const coverUrl =
+                typeof post.coverImage === "object" && post.coverImage
+                  ? (post.coverImage as { url?: string }).url
+                  : null;
+              const tags = (post.tags ?? []).map((t: unknown) => (t as { tag: string }).tag);
+              const publishedAt = post.publishedAt as string | null;
+
+              return (
+                <Link key={post.id} href={`/blog/${post.slug}`} className="group">
+                  <GlassCard className="overflow-hidden h-full flex flex-col">
+                    <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 border-b border-white/[0.05] flex-shrink-0 relative overflow-hidden">
+                      {coverUrl ? (
+                        <Image
+                          src={coverUrl}
+                          alt={post.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <span className="text-zinc-700 text-sm">Sin imagen</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="p-6 flex flex-col gap-3 flex-1">
+                      <div className="flex items-center gap-2 text-xs text-zinc-600">
+                        {publishedAt && (
+                          <>
+                            <time dateTime={publishedAt}>
+                              {formatDate(publishedAt)}
+                            </time>
+                            <span>·</span>
+                          </>
+                        )}
+                        <span>{readingTime(post.content as object)} min de lectura</span>
                       </div>
-                    )}
-                  </div>
 
-                  {/* Content */}
-                  <div className="p-6 flex flex-col gap-3 flex-1">
-                    <div className="flex items-center gap-2 text-xs text-zinc-600">
-                      <time dateTime={post.publishedAt}>
-                        {formatDate(post.publishedAt)}
-                      </time>
-                      <span>·</span>
-                      <span>{readingTime(post.content)} min de lectura</span>
+                      <h2 className="text-lg font-semibold text-zinc-100 group-hover:text-blue-300 transition-colors duration-200 leading-snug">
+                        {post.title}
+                      </h2>
+
+                      <p className="text-sm text-zinc-500 leading-relaxed flex-1">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5">
+                        {tags.map((tag: string) => (
+                          <Badge key={tag}>{tag}</Badge>
+                        ))}
+                      </div>
                     </div>
-
-                    <h2 className="text-lg font-semibold text-zinc-100 group-hover:text-blue-300 transition-colors duration-200 leading-snug">
-                      {post.title}
-                    </h2>
-
-                    <p className="text-sm text-zinc-500 leading-relaxed flex-1">
-                      {post.excerpt}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5">
-                      {post.tags.map((tag) => (
-                        <Badge key={tag}>{tag}</Badge>
-                      ))}
-                    </div>
-                  </div>
-                </GlassCard>
-              </Link>
-            ))}
+                  </GlassCard>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </main>
