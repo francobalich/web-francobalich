@@ -1,15 +1,24 @@
 import Link from "next/link";
+import Image from "next/image";
 import GlassCard from "./ui/GlassCard";
+import Badge from "./ui/Badge";
+import { getPayloadClient } from "@/lib/payload";
+import { formatDate } from "@/data/blog";
 
-export default function BlogPreview() {
-  // En Fase 4 esto consultará Payload CMS
-  const posts: never[] = [];
+export default async function BlogPreview() {
+  const payload = await getPayloadClient();
+  const { docs: posts } = await payload.find({
+    collection: "posts",
+    where: { status: { equals: "published" } },
+    sort: "-publishedAt",
+    limit: 3,
+    depth: 1,
+  });
 
   if (posts.length === 0) {
     return (
       <section id="blog" className="py-24">
         <div className="max-w-6xl mx-auto px-6">
-
           <div className="mb-12">
             <p className="text-blue-400 text-sm font-medium tracking-wider uppercase mb-2">
               Contenido
@@ -48,7 +57,6 @@ export default function BlogPreview() {
               </a>
             </div>
           </GlassCard>
-
         </div>
       </section>
     );
@@ -76,7 +84,58 @@ export default function BlogPreview() {
             </svg>
           </Link>
         </div>
-        {/* Lista de posts — se implementa en Fase 4 */}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {posts.map((post) => {
+            const coverUrl =
+              typeof post.coverImage === "object" && post.coverImage
+                ? (post.coverImage as { url?: string }).url
+                : null;
+            const tags = (post.tags ?? []).map((t: unknown) => (t as { tag: string }).tag);
+            const publishedAt = post.publishedAt as string | null;
+
+            return (
+              <Link key={post.id} href={`/blog/${post.slug}`} className="group">
+                <GlassCard className="overflow-hidden h-full flex flex-col">
+                  <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 border-b border-white/[0.05] flex-shrink-0 relative overflow-hidden">
+                    {coverUrl ? (
+                      <Image
+                        src={coverUrl}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-zinc-700 text-sm">Sin imagen</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-6 flex flex-col gap-3 flex-1">
+                    {publishedAt && (
+                      <div className="text-xs text-zinc-600">
+                        <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
+                      </div>
+                    )}
+                    <h3 className="text-lg font-semibold text-zinc-100 group-hover:text-blue-300 transition-colors duration-200 leading-snug">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-zinc-500 leading-relaxed flex-1">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {tags.map((tag: string) => (
+                        <Badge key={tag}>{tag}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                </GlassCard>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
