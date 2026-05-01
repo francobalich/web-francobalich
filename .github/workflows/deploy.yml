@@ -18,6 +18,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script_stop: true
           script: |
+            source ~/.nvm/nvm.sh
             cd ${{ secrets.EC2_APP_DIR }}
             git pull origin main
             npm ci
