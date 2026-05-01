@@ -16,6 +16,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+          script_stop: true
           script: |
             cd ${{ secrets.EC2_APP_DIR }}
             git pull origin main
