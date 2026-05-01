@@ -1,6 +1,7 @@
 import Link from "next/link";
 import GlassCard from "./ui/GlassCard";
 import Badge from "./ui/Badge";
+import FadeIn from "./ui/FadeIn";
 import { talks } from "@/data/talks";
 
 export default function TalksPreview() {
@@ -12,7 +13,7 @@ export default function TalksPreview() {
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Header */}
-        <div className="flex items-end justify-between mb-12">
+        <FadeIn className="flex items-end justify-between mb-12">
           <div>
             <p className="text-cyan-400 text-sm font-medium tracking-wider uppercase mb-2">
               Comunidad
@@ -32,10 +33,11 @@ export default function TalksPreview() {
               </svg>
             </Link>
           )}
-        </div>
+        </FadeIn>
 
         {isEmpty ? (
           /* Empty state */
+          <FadeIn delay={100}>
           <GlassCard hover={false} className="p-12 text-center">
             <div className="w-12 h-12 rounded-2xl glass-blue flex items-center justify-center mx-auto mb-4">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} className="text-blue-400">
@@ -49,10 +51,12 @@ export default function TalksPreview() {
               Las charlas y eventos aparecerán acá.
             </p>
           </GlassCard>
+          </FadeIn>
         ) : (
           <div className="flex flex-col gap-4">
-            {recent.map((talk) => (
-              <GlassCard key={talk.id} className="p-5 md:p-6">
+            {recent.map((talk, i) => (
+              <FadeIn key={talk.id} delay={i * 80}>
+              <GlassCard className="p-5 md:p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -90,6 +94,7 @@ export default function TalksPreview() {
                   </div>
                 </div>
               </GlassCard>
+              </FadeIn>
             ))}
           </div>
         )}
