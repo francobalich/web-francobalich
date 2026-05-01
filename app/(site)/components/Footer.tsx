@@ -10,14 +10,14 @@ export default function Footer() {
 
           <div className="flex flex-col items-center md:items-start gap-1">
             <span className="text-zinc-300 font-semibold">Franco Balich</span>
-            <span className="text-zinc-600 text-sm">© {year} Todos los derechos reservados.</span>
+            <span className="text-zinc-400 text-sm">© {year} Todos los derechos reservados.</span>
           </div>
 
           <SocialLinks size="sm" />
 
           <a
             href="#hero"
-            className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors duration-200 flex items-center gap-1"
+            className="text-xs text-zinc-400 hover:text-zinc-200 transition-colors duration-200 flex items-center gap-1"
           >
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />

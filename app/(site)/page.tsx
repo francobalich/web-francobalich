@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ProjectsPreview from "./components/ProjectsPreview";
