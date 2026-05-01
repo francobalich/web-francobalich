@@ -8,7 +8,7 @@ import Badge from "../components/ui/Badge";
 import { getPayloadClient } from "@/lib/payload";
 import { formatDate } from "@/data/blog";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // fallback: revalidar cada hora
 
 export const metadata: Metadata = {
   title: "Blog — Franco Balich",

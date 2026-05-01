@@ -1,11 +1,21 @@
 import type { CollectionConfig } from "payload";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { revalidatePath } from "next/cache";
 
 export const Posts: CollectionConfig = {
   slug: "posts",
   admin: {
     useAsTitle: "title",
     defaultColumns: ["title", "status", "publishedAt"],
+  },
+  hooks: {
+    afterChange: [
+      ({ doc }) => {
+        revalidatePath("/blog");
+        revalidatePath(`/blog/${doc.slug}`);
+        revalidatePath("/");
+      },
+    ],
   },
   fields: [
     {

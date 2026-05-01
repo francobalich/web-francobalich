@@ -8,9 +8,10 @@ import Badge from "../../components/ui/Badge";
 import { getPayloadClient } from "@/lib/payload";
 import { formatDate } from "@/data/blog";
 import { convertLexicalToHTML } from "@payloadcms/richtext-lexical/html";
-import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+import type { SerializedEditorState, SerializedLexicalNode } from "@payloadcms/richtext-lexical/lexical";
+import { highlightCodeBlocks } from "@/lib/highlight";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // fallback: revalidar cada hora
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -70,10 +71,25 @@ export default async function PostPage({ params }: Props) {
   const tags = (post.tags ?? []).map((t: unknown) => (t as { tag: string }).tag);
   const publishedAt = post.publishedAt as string | null;
 
-  const contentHtml = convertLexicalToHTML({
+  const rawHtml = convertLexicalToHTML({
     data: post.content as SerializedEditorState,
     disableContainer: true,
+    converters: ({ defaultConverters }) => ({
+      ...defaultConverters,
+      code: ({ node }) => {
+        const lang = (node as unknown as { language?: string }).language ?? "";
+        const text = ((node as unknown as { children?: SerializedLexicalNode[] }).children ?? [])
+          .map((child) => (child as unknown as { text?: string }).text ?? "")
+          .join("");
+        const escaped = text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+        return `<pre><code class="language-${lang}">${escaped}</code></pre>`;
+      },
+    }),
   });
+  const contentHtml = await highlightCodeBlocks(rawHtml);
 
   const postUrl = `https://francobalich.com/blog/${post.slug}`;
   const shareText = encodeURIComponent(post.title);
