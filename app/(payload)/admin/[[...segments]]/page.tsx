@@ -1,5 +1,5 @@
 import { RootPage, generatePageMetadata } from "@payloadcms/next/views";
-import { importMap } from "../../importMap";
+import { importMap } from "../importMap.js";
 import config from "@/payload.config";
 import type { Metadata } from "next";
 
