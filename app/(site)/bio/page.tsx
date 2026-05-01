@@ -52,16 +52,16 @@ export default function BioPage() {
               Franco Balich
             </h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-10 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-10 items-start">
               {/* Foto */}
               <div className="flex flex-col items-center md:items-start gap-3">
-                <div className="relative w-44 h-44 md:w-48 md:h-48 rounded-2xl overflow-hidden border border-blue-500/20 glow-blue flex-shrink-0">
+                <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-2xl overflow-hidden border border-blue-500/20 glow-blue flex-shrink-0">
                   <Image
                     src="/images/profile/franco.jpeg"
                     alt="Franco Balich — foto oficial"
                     fill
                     className="object-cover object-top"
-                    sizes="(max-width: 768px) 176px, 192px"
+                    sizes="(max-width: 768px) 208px, 256px"
                     priority
                   />
                 </div>
@@ -155,31 +155,24 @@ export default function BioPage() {
             </GlassCard>
           </section>
 
-          {/* ── Bloque 4.5: Social proof ── */}
-          <section aria-label="Organizaciones y eventos">
-            <h2 className="text-2xl font-bold text-zinc-100 mb-2">
-              Eventos y organizaciones
-            </h2>
-            <p className="text-zinc-500 text-sm mb-8">
-              Eventos donde participé como speaker, instructor o panelista.
-            </p>
-            <GlassCard hover={false} className="p-10 text-center">
-              <p className="text-zinc-600 text-sm">Logos de eventos — próximamente</p>
-            </GlassCard>
-          </section>
-
           {/* ── Bloque 3: Galería de fotos ── */}
           <section aria-label="Galería de fotos">
             <h2 className="text-2xl font-bold text-zinc-100 mb-2">
               Galería
             </h2>
             <p className="text-zinc-500 text-sm mb-8">
-              Fotos en eventos, charlas y el laboratorio. Disponibles para uso
-              en medios con crédito.
+              Fotos en eventos, charlas y el laboratorio. Disponibles para uso en medios con crédito.
             </p>
-            <GlassCard hover={false} className="p-10 text-center">
-              <p className="text-zinc-600 text-sm">Fotos — próximamente</p>
-            </GlassCard>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="aspect-[4/3] min-h-[120px] rounded-2xl bg-zinc-900 border border-white/[0.10] flex items-center justify-center overflow-hidden"
+                >
+                  <span className="text-zinc-600 text-xs">Foto próximamente</span>
+                </div>
+              ))}
+            </div>
           </section>
 
           {/* ── Bloque 4 + 6: Kit de prensa ── */}
