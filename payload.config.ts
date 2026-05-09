@@ -36,7 +36,7 @@ export default buildConfig({
     s3Storage({
       collections: {
         media: {
-          generateURL: ({ filename }) => `/media/${filename}`,
+          generateFileURL: ({ filename }) => `/media/${filename}`,
         },
       },
       bucket: process.env.S3_BUCKET || "",
