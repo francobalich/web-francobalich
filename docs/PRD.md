@@ -229,7 +229,26 @@ Ver `CONTENT.md` para el detalle completo.
 
 ---
 
-## 14. Fuera de Alcance
+## 14. Mejoras Planificadas — Blog (Fase 7)
+
+### 14.1 Índice lateral (Table of Contents)
+Parsear los headings `<h2>` y `<h3>` del contenido renderizado y mostrar un índice sticky en el lateral derecho del post. Highlight del heading activo según scroll con IntersectionObserver.
+
+### 14.2 Posts recomendados por tags
+Al pie de cada post, mostrar 2–3 posts que compartan al menos un tag con el post actual. Query a Payload filtrando por tags, excluyendo el post actual.
+
+### 14.3 Tags reutilizables con autocompletado
+Extraer los tags a una colección propia (`Tags`) y reemplazar el campo de texto libre por una relación many-to-many. El admin de Payload mostraría autocompletado con los tags existentes al escribir.
+
+### 14.4 UI de tags más compacta en el admin
+Customizar el componente del campo `tags` en Payload admin para que ocupe menos espacio vertical. Requiere un custom field component en React.
+
+### 14.5 Logo e identidad visual propia
+Diseñar un símbolo/logo personal (iniciales "FB" o símbolo del laboratorio) para reemplazar el favicon genérico de Next.js. Ver sección 8 (Favicon) para los formatos requeridos.
+
+---
+
+## 15. Fuera de Alcance
 
 - Formulario de contacto
 - Modo claro

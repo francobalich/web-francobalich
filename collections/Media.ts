@@ -32,8 +32,8 @@ export const Media: CollectionConfig = {
             throw new ValidationError({
               errors: [
                 {
-                  field: "file",
                   message: `Filename contains invalid characters (spaces, accents, parentheses, etc.). Please rename the file before uploading. Suggested name: "${suggested}"`,
+                  path: "file",
                 },
               ],
             });
