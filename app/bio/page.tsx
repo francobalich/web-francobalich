@@ -13,17 +13,15 @@ export const metadata: Metadata = {
     "Kit de prensa y recursos para medios. Bio, fotos y contacto de Franco Balich.",
 };
 
-const bioShort = `Franco Balich es Full Stack Developer, Data Engineer y Doctorando en Informática. Director del Laboratorio Creativo 3D, lidera proyectos en la intersección del software, los datos y el hardware. Con más de 5 años de experiencia en desarrollo, investigación y docencia, combina formación académica rigurosa con práctica en la industria. Referente en la comunidad tech argentina, comparte conocimiento con más de 120.000 personas en redes sociales a través de contenido sobre programación, IoT y tecnología. Speaker en eventos tecnológicos, docente universitario y creador de herramientas con impacto real.`;
+const bioShort = `Franco Balich es Full Stack Developer y Data Engineer. Director del Laboratorio Creativo 3D, Doctorando en Informática. 5+ años en desarrollo, investigación y docencia. 120k seguidores en tech.`;
 
-const bioLong = `Franco Balich es Full Stack Developer, Data Engineer y Doctorando en Informática. Como Director del Laboratorio Creativo 3D, lidera un equipo que desarrolla proyectos innovadores en la intersección del software, los datos y el hardware, con aplicaciones reales en industria y educación.
+const bioLong = `Franco Balich es Full Stack Developer, Data Engineer y Doctorando en Informática. Como Director del Laboratorio Creativo 3D, lidera proyectos en la intersección del software, los datos y el hardware.
 
-Con más de 5 años de experiencia profesional, Franco ha trabajado en el desarrollo de plataformas web, sistemas IoT, pipelines de datos y aplicaciones de inteligencia artificial. Su enfoque combina la rigurosidad de la investigación académica con la velocidad y pragmatismo de la industria tecnológica.
+Con más de 5 años de experiencia, ha desarrollado plataformas web, sistemas IoT, pipelines de datos e inteligencia artificial. Combina rigurosidad académica con pragmatismo de la industria tecnológica.
 
-Como docente universitario, ha formado a cientos de estudiantes en programación, ciencia de datos y tecnologías emergentes. Paralelamente, construyó una comunidad digital de más de 120.000 seguidores en redes sociales donde comparte contenido educativo sobre desarrollo de software, IoT, Python y creación de proyectos tecnológicos.
+Docente universitario, ha formado a cientos de estudiantes en programación y ciencia de datos. Construyó una comunidad de más de 120.000 seguidores con contenido sobre desarrollo, IoT y Python.
 
-Franco ha participado como speaker, instructor y panelista en eventos de tecnología e innovación en Argentina, donde habla sobre IoT, data engineering, laboratorios de fabricación digital y el futuro de la educación tecnológica.
-
-Su trabajo en el Laboratorio Creativo 3D incluye proyectos como sistemas de control de robots vía web, plataformas de identificación para laboratorios de fabricación, e investigaciones aplicadas en el campo de la IA y los datos. Cada proyecto parte de un problema real, explora el enfoque técnico más adecuado y mide el impacto del resultado.`;
+Speaker en eventos de tecnología en Argentina, habla sobre IoT, data engineering y educación tecnológica.`;
 
 const expertise = [
   "Full Stack Development",
@@ -78,7 +76,7 @@ export default function BioPage() {
                 <GlassCard hover={false} className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
-                      Bio corta — ~100 palabras
+                      Bio corta — {bioShort.length} / 200 caracteres
                     </span>
                     <CopyButton text={bioShort} />
                   </div>
@@ -89,7 +87,7 @@ export default function BioPage() {
                 <GlassCard hover={false} className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
-                      Bio larga — ~300 palabras
+                      Bio larga — {bioLong.length} / 1000 caracteres
                     </span>
                     <CopyButton text={bioLong} />
                   </div>
