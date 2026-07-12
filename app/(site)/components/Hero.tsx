@@ -19,7 +19,7 @@ export default function Hero() {
         <FadeIn instant delay={0} className="flex items-center gap-4 mb-10">
           <span className="h-px w-10 bg-blue-500 flex-shrink-0" />
           <span className="text-sm md:text-base text-blue-400 font-medium tracking-widest uppercase">
-            Data Engineer · Full Stack · Docente · Creador de contenido
+            Full Stack · Investigador · Docente · Creador de contenido
           </span>
         </FadeIn>
 
