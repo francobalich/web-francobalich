@@ -17,7 +17,7 @@ const bioShort = `Investigador en robótica, IoT e IA, director de un laboratori
 
 const bioLong = `Franco Balich es Full Stack Developer, Data Engineer y Doctorando en Informática. Como Director del Laboratorio Creativo 3D, lidera proyectos en la intersección del software, los datos y el hardware.
 
-Con más de 5 años de experiencia, ha desarrollado plataformas web, sistemas IoT, pipelines de datos e inteligencia artificial. Combina rigurosidad académica con pragmatismo de la industria tecnológica.
+Con más de 7 años de experiencia, ha desarrollado plataformas web, sistemas IoT, pipelines de datos e inteligencia artificial. Combina rigurosidad académica con pragmatismo de la industria tecnológica.
 
 Docente universitario, ha formado a cientos de estudiantes en programación y ciencia de datos. Construyó una comunidad de más de 120.000 seguidores con contenido sobre desarrollo, IoT y Python.
 

@@ -44,7 +44,7 @@ export default function Hero() {
                 Data Engineer · Docente e Investigador
               </p>
               <p className="text-zinc-500 text-lg leading-relaxed">
-                Más de 5 años construyendo software en desarrollo, investigación
+                Más de 7 años construyendo software en desarrollo, investigación
                 y educación. Apasionado por la IA, el IoT y enseñar tecnología
                 a más de 120k personas en redes sociales.
               </p>
