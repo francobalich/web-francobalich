@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import GlassCard from "./ui/GlassCard";
 import Badge from "./ui/Badge";
 import FadeIn from "./ui/FadeIn";
@@ -37,10 +38,22 @@ export default function ProjectsPreview() {
           {featured.map((project, i) => (
             <FadeIn key={project.id} delay={i * 100}>
             <GlassCard className="overflow-hidden group h-full">
-              {/* Imagen placeholder */}
-              <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 flex items-center justify-center border-b border-white/[0.05]">
-                <span className="text-zinc-700 text-sm">{project.name}</span>
-              </div>
+              {/* Imagen */}
+              {project.imageUrl ? (
+                <div className="relative h-44 border-b border-white/[0.05]">
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.name}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+              ) : (
+                <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 flex items-center justify-center border-b border-white/[0.05]">
+                  <span className="text-zinc-700 text-sm">{project.name}</span>
+                </div>
+              )}
 
               {/* Contenido */}
               <div className="p-6 flex flex-col gap-3">
@@ -79,6 +92,19 @@ export default function ProjectsPreview() {
                       className="text-sm text-zinc-500 hover:text-zinc-300 flex items-center gap-1 transition-colors duration-200"
                     >
                       Código
+                      <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  )}
+                  {project.socialUrl && (
+                    <a
+                      href={project.socialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-zinc-500 hover:text-zinc-300 flex items-center gap-1 transition-colors duration-200"
+                    >
+                      Redes
                       <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>

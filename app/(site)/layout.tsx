@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import CookieConsent from "./components/CookieConsent";
 import "../globals.css";
 
 const geist = Geist({
@@ -9,12 +9,12 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Franco Balich — Full Stack Developer & Data Engineer",
+  title: "Franco Balich - Full Stack Developer & Data Engineer",
   description:
     "Director del Laboratorio Creativo 3D, Doctorando en Informática, Full Stack Developer y Data Engineer.",
   metadataBase: new URL("https://francobalich.com"),
   openGraph: {
-    title: "Franco Balich — Full Stack Developer & Data Engineer",
+    title: "Franco Balich - Full Stack Developer & Data Engineer",
     description:
       "Director del Laboratorio Creativo 3D, Doctorando en Informática, Full Stack Developer y Data Engineer.",
     url: "https://francobalich.com",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Franco Balich — Full Stack Developer & Data Engineer",
+    title: "Franco Balich - Full Stack Developer & Data Engineer",
     description:
       "Director del Laboratorio Creativo 3D, Doctorando en Informática, Full Stack Developer y Data Engineer.",
   },
@@ -44,10 +44,10 @@ export default function RootLayout({
           <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-blue-600/[0.08] rounded-full blur-3xl" />
         </div>
         {children}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <CookieConsent gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
-      {process.env.NEXT_PUBLIC_GA_ID && (
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-      )}
     </html>
   );
 }
