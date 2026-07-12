@@ -34,4 +34,15 @@ export const talks: Talk[] = [
       "https://www.linkedin.com/posts/francobalich_innovacion-innovacionabierta-ia-activity-7326216525021900801-BjSA",
     upcoming: false,
   },
+  {
+    id: "nerdearla-101-2023",
+    title: "Robótica: una herramienta para aprender a programar",
+    event: "Nerdearla 10.1",
+    role: "speaker",
+    date: "2023-11-22",
+    location: "Virtual (Nerdearla)",
+    eventUrl:
+      "https://www.linkedin.com/posts/nerdearla_nerdearla101-activity-7132703202851905536-62tl",
+    upcoming: false,
+  },
 ];
