@@ -4,7 +4,7 @@ import Image from "next/image";
 import FadeIn from "./ui/FadeIn";
 
 const stats = [
-  { label: "Laboratorio", value: "Lab Creativo 3D" },
+  { label: "Director de", value: "Lab Creativo 3D" },
   { label: "Formación", value: "Doctorando" },
   { label: "Especialización", value: "IoT · Datos · Web" },
   { label: "Ubicación", value: "Argentina" },
