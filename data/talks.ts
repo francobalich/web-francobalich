@@ -37,7 +37,7 @@ export const talks: Talk[] = [
   {
     id: "nerdearla-101-2023",
     title: "Robótica: una herramienta para aprender a programar",
-    event: "Nerdearla 10.1",
+    event: "Nerdearla 101",
     role: "speaker",
     date: "2023-11-22",
     location: "Virtual (Nerdearla)",
