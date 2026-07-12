@@ -41,7 +41,7 @@ export default function Hero() {
 
             <FadeIn instant delay={220} className="flex flex-col gap-3 max-w-xl">
               <p className="text-zinc-300 text-xl md:text-2xl font-light leading-snug">
-                Data Engineer · Docente e Investigador
+                Full Stack · Investigador · Docente
               </p>
               <p className="text-zinc-500 text-lg leading-relaxed">
                 Más de 7 años construyendo software en desarrollo, investigación
