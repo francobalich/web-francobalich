@@ -83,7 +83,7 @@ export default function ProjectsPage() {
                       <Badge key={tag}>{tag}</Badge>
                     ))}
                   </div>
-                  {(project.demoUrl || project.repoUrl) && (
+                  {(project.demoUrl || project.repoUrl || project.socialUrl) && (
                     <div className="flex gap-3 pt-1">
                       {project.demoUrl && (
                         <a
@@ -103,6 +103,16 @@ export default function ProjectsPage() {
                           className="text-sm text-zinc-500 hover:text-zinc-300 flex items-center gap-1 transition-colors duration-200"
                         >
                           Código <ExternalIcon />
+                        </a>
+                      )}
+                      {project.socialUrl && (
+                        <a
+                          href={project.socialUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-zinc-500 hover:text-zinc-300 flex items-center gap-1 transition-colors duration-200"
+                        >
+                          Redes <ExternalIcon />
                         </a>
                       )}
                     </div>

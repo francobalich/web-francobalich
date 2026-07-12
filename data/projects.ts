@@ -7,6 +7,7 @@ export interface Project {
   imageUrl?: string;
   demoUrl?: string;
   repoUrl?: string;
+  socialUrl?: string;
   featured: boolean;
   status: "published" | "wip" | "coming-soon";
 }
@@ -18,7 +19,7 @@ export const projects: Project[] = [
     slug: "innovativallab",
     description: "Plataforma de cursos online de robótica educativa.",
     tags: ["Robótica", "Educación", "Web"],
-    demoUrl: "https://www.instagram.com/innovativalab/",
+    socialUrl: "https://www.instagram.com/innovativalab/",
     featured: true,
     status: "published",
   },
@@ -37,7 +38,7 @@ export const projects: Project[] = [
     name: "Alice",
     slug: "alice",
     description:
-      "Asistente virtual capaz de controlar un robot, controlar luces, leer recompensas y el chat de Twitch, reconocer audio y reproducir sonidos.",
+      "Asistente virtual que controla robots, luces y el chat de Twitch por voz.",
     tags: ["Python", "IA", "IoT"],
     demoUrl: "https://alice.francobalich.com",
     featured: false,
