@@ -39,13 +39,13 @@ export default function ProjectsPreview() {
             <GlassCard className="overflow-hidden group h-full">
               {/* Imagen placeholder */}
               <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 flex items-center justify-center border-b border-white/[0.05]">
-                <span className="text-zinc-500 text-sm">{project.name}</span>
+                <span className="text-zinc-700 text-sm">{project.name}</span>
               </div>
 
               {/* Contenido */}
               <div className="p-6 flex flex-col gap-3">
                 <h3 className="text-lg font-semibold text-zinc-100">{project.name}</h3>
-                <p className="text-base text-zinc-400 leading-relaxed">
+                <p className="text-base text-zinc-500 leading-relaxed">
                   {project.description}
                 </p>
 
@@ -95,7 +95,7 @@ export default function ProjectsPreview() {
         <div className="sm:hidden mt-8 text-center">
           <Link
             href="/projects"
-            className="text-sm text-zinc-400 hover:text-zinc-200 transition-colors duration-200"
+            className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors duration-200"
           >
             Ver todos los proyectos →
           </Link>

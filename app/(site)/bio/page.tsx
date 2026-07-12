@@ -13,17 +13,15 @@ export const metadata: Metadata = {
     "Kit de prensa y recursos para medios. Bio, fotos y contacto de Franco Balich.",
 };
 
-const bioShort = `Franco Balich es Full Stack Developer, Data Engineer y Doctorando en Informática. Director del Laboratorio Creativo 3D, lidera proyectos en la intersección del software, los datos y el hardware. Con más de 5 años de experiencia en desarrollo, investigación y docencia, combina formación académica rigurosa con práctica en la industria. Referente en la comunidad tech argentina, comparte conocimiento con más de 120.000 personas en redes sociales a través de contenido sobre programación, IoT y tecnología. Speaker en eventos tecnológicos, docente universitario y creador de herramientas con impacto real.`;
+const bioShort = `Investigador en robótica, IoT e IA, director de un laboratorio creativo 3D, Data Engineer y creador de contenido sobre tecnología en redes sociales.`;
 
-const bioLong = `Franco Balich es Full Stack Developer, Data Engineer y Doctorando en Informática. Como Director del Laboratorio Creativo 3D, lidera un equipo que desarrolla proyectos innovadores en la intersección del software, los datos y el hardware, con aplicaciones reales en industria y educación.
+const bioLong = `Franco Balich es Full Stack Developer, Data Engineer y Doctorando en Informática. Como Director del Laboratorio Creativo 3D, lidera proyectos en la intersección del software, los datos y el hardware.
 
-Con más de 5 años de experiencia profesional, Franco ha trabajado en el desarrollo de plataformas web, sistemas IoT, pipelines de datos y aplicaciones de inteligencia artificial. Su enfoque combina la rigurosidad de la investigación académica con la velocidad y pragmatismo de la industria tecnológica.
+Con más de 5 años de experiencia, ha desarrollado plataformas web, sistemas IoT, pipelines de datos e inteligencia artificial. Combina rigurosidad académica con pragmatismo de la industria tecnológica.
 
-Como docente universitario, ha formado a cientos de estudiantes en programación, ciencia de datos y tecnologías emergentes. Paralelamente, construyó una comunidad digital de más de 120.000 seguidores en redes sociales donde comparte contenido educativo sobre desarrollo de software, IoT, Python y creación de proyectos tecnológicos.
+Docente universitario, ha formado a cientos de estudiantes en programación y ciencia de datos. Construyó una comunidad de más de 120.000 seguidores con contenido sobre desarrollo, IoT y Python.
 
-Franco ha participado como speaker, instructor y panelista en eventos de tecnología e innovación en Argentina, donde habla sobre IoT, data engineering, laboratorios de fabricación digital y el futuro de la educación tecnológica.
-
-Su trabajo en el Laboratorio Creativo 3D incluye proyectos como sistemas de control de robots vía web, plataformas de identificación para laboratorios de fabricación, e investigaciones aplicadas en el campo de la IA y los datos. Cada proyecto parte de un problema real, explora el enfoque técnico más adecuado y mide el impacto del resultado.`;
+Speaker en eventos de tecnología en Argentina, habla sobre IoT, data engineering y educación tecnológica.`;
 
 const expertise = [
   "Full Stack Development",
@@ -52,16 +50,16 @@ export default function BioPage() {
               Franco Balich
             </h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-10 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-10 items-start">
               {/* Foto */}
               <div className="flex flex-col items-center md:items-start gap-3">
-                <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-2xl overflow-hidden border border-blue-500/20 glow-blue flex-shrink-0">
+                <div className="relative w-44 h-44 md:w-48 md:h-48 rounded-2xl overflow-hidden border border-blue-500/20 glow-blue flex-shrink-0">
                   <Image
                     src="/images/profile/franco.jpeg"
                     alt="Franco Balich — foto oficial"
                     fill
                     className="object-cover object-top"
-                    sizes="(max-width: 768px) 208px, 256px"
+                    sizes="(max-width: 768px) 176px, 192px"
                     priority
                   />
                 </div>
@@ -78,7 +76,7 @@ export default function BioPage() {
                 <GlassCard hover={false} className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
-                      Bio corta — ~100 palabras
+                      Bio corta — {bioShort.length} / 200 caracteres
                     </span>
                     <CopyButton text={bioShort} />
                   </div>
@@ -89,7 +87,7 @@ export default function BioPage() {
                 <GlassCard hover={false} className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
-                      Bio larga — ~300 palabras
+                      Bio larga — {bioLong.length} / 1000 caracteres
                     </span>
                     <CopyButton text={bioLong} />
                   </div>
@@ -155,24 +153,31 @@ export default function BioPage() {
             </GlassCard>
           </section>
 
+          {/* ── Bloque 4.5: Social proof ── */}
+          <section aria-label="Organizaciones y eventos">
+            <h2 className="text-2xl font-bold text-zinc-100 mb-2">
+              Eventos y organizaciones
+            </h2>
+            <p className="text-zinc-500 text-sm mb-8">
+              Eventos donde participé como speaker, instructor o panelista.
+            </p>
+            <GlassCard hover={false} className="p-10 text-center">
+              <p className="text-zinc-600 text-sm">Logos de eventos — próximamente</p>
+            </GlassCard>
+          </section>
+
           {/* ── Bloque 3: Galería de fotos ── */}
           <section aria-label="Galería de fotos">
             <h2 className="text-2xl font-bold text-zinc-100 mb-2">
               Galería
             </h2>
             <p className="text-zinc-500 text-sm mb-8">
-              Fotos en eventos, charlas y el laboratorio. Disponibles para uso en medios con crédito.
+              Fotos en eventos, charlas y el laboratorio. Disponibles para uso
+              en medios con crédito.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="aspect-[4/3] min-h-[120px] rounded-2xl bg-zinc-900 border border-white/[0.10] flex items-center justify-center overflow-hidden"
-                >
-                  <span className="text-zinc-600 text-xs">Foto próximamente</span>
-                </div>
-              ))}
-            </div>
+            <GlassCard hover={false} className="p-10 text-center">
+              <p className="text-zinc-600 text-sm">Fotos — próximamente</p>
+            </GlassCard>
           </section>
 
           {/* ── Bloque 4 + 6: Kit de prensa ── */}
