@@ -8,7 +8,7 @@ import SocialLinks from "../components/ui/SocialLinks";
 import CopyButton from "./CopyButton";
 
 export const metadata: Metadata = {
-  title: "Biografía — Franco Balich",
+  title: "Biografía - Franco Balich",
   description:
     "Kit de prensa y recursos para medios. Bio, fotos y contacto de Franco Balich.",
 };
@@ -56,7 +56,7 @@ export default function BioPage() {
                 <div className="relative w-44 h-44 md:w-48 md:h-48 rounded-2xl overflow-hidden border border-blue-500/20 glow-blue flex-shrink-0">
                   <Image
                     src="/images/profile/franco.jpeg"
-                    alt="Franco Balich — foto oficial"
+                    alt="Franco Balich - foto oficial"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 768px) 176px, 192px"
@@ -76,7 +76,7 @@ export default function BioPage() {
                 <GlassCard hover={false} className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
-                      Bio corta — {bioShort.length} / 200 caracteres
+                      Bio corta - {bioShort.length} / 200 caracteres
                     </span>
                     <CopyButton text={bioShort} />
                   </div>
@@ -87,7 +87,7 @@ export default function BioPage() {
                 <GlassCard hover={false} className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
-                      Bio larga — {bioLong.length} / 1000 caracteres
+                      Bio larga - {bioLong.length} / 1000 caracteres
                     </span>
                     <CopyButton text={bioLong} />
                   </div>
@@ -162,7 +162,7 @@ export default function BioPage() {
               Eventos donde participé como speaker, instructor o panelista.
             </p>
             <GlassCard hover={false} className="p-10 text-center">
-              <p className="text-zinc-600 text-sm">Logos de eventos — próximamente</p>
+              <p className="text-zinc-600 text-sm">Logos de eventos - próximamente</p>
             </GlassCard>
           </section>
 
@@ -176,7 +176,7 @@ export default function BioPage() {
               en medios con crédito.
             </p>
             <GlassCard hover={false} className="p-10 text-center">
-              <p className="text-zinc-600 text-sm">Fotos — próximamente</p>
+              <p className="text-zinc-600 text-sm">Fotos - próximamente</p>
             </GlassCard>
           </section>
 

@@ -9,12 +9,12 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Franco Balich — Full Stack Developer & Data Engineer",
+  title: "Franco Balich - Full Stack Developer & Data Engineer",
   description:
     "Director del Laboratorio Creativo 3D, Doctorando en Informática, Full Stack Developer y Data Engineer.",
   metadataBase: new URL("https://francobalich.com"),
   openGraph: {
-    title: "Franco Balich — Full Stack Developer & Data Engineer",
+    title: "Franco Balich - Full Stack Developer & Data Engineer",
     description:
       "Director del Laboratorio Creativo 3D, Doctorando en Informática, Full Stack Developer y Data Engineer.",
     url: "https://francobalich.com",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Franco Balich — Full Stack Developer & Data Engineer",
+    title: "Franco Balich - Full Stack Developer & Data Engineer",
     description:
       "Director del Laboratorio Creativo 3D, Doctorando en Informática, Full Stack Developer y Data Engineer.",
   },

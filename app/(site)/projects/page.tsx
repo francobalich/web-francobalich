@@ -6,7 +6,7 @@ import Badge from "../components/ui/Badge";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Proyectos — Franco Balich",
+  title: "Proyectos - Franco Balich",
   description:
     "Proyectos de software, IoT y data engineering desarrollados por Franco Balich.",
 };

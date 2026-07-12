@@ -4,7 +4,7 @@ import Link from "next/link";
 import { socials } from "@/data/social";
 
 export const metadata: Metadata = {
-  title: "Franco Balich — Links",
+  title: "Franco Balich - Links",
   description: "Todos los links de Franco Balich en un solo lugar.",
 };
 
