@@ -6,7 +6,7 @@ import Badge from "../components/ui/Badge";
 import { talks, type Talk } from "@/data/talks";
 
 export const metadata: Metadata = {
-  title: "Charlas y Eventos — Franco Balich",
+  title: "Charlas y Eventos - Franco Balich",
   description:
     "Charlas, workshops y eventos en los que Franco Balich ha participado como speaker, instructor o panelista.",
 };

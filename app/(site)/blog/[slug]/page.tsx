@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const updatedAt = post.updatedAt as string | undefined;
 
   return {
-    title: `${post.title} — Franco Balich`,
+    title: `${post.title} - Franco Balich`,
     description: post.excerpt,
     alternates: { canonical: postUrl },
     openGraph: {
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} — Franco Balich`,
+      title: `${post.title} - Franco Balich`,
       description: post.excerpt,
       creator: "@francobalich",
       site: "@francobalich",
@@ -166,7 +166,7 @@ export default async function PostPage({ params }: Props) {
     inLanguage: "es-AR",
     isPartOf: {
       "@type": "Blog",
-      name: "Blog — Franco Balich",
+      name: "Blog - Franco Balich",
       url: "https://francobalich.com/blog",
     },
   };

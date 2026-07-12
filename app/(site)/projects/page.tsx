@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import GlassCard from "../components/ui/GlassCard";
@@ -6,7 +7,7 @@ import Badge from "../components/ui/Badge";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Proyectos — Franco Balich",
+  title: "Proyectos - Franco Balich",
   description:
     "Proyectos de software, IoT y data engineering desarrollados por Franco Balich.",
 };
@@ -56,8 +57,18 @@ export default function ProjectsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {projects.map((project) => (
               <GlassCard key={project.id} className="overflow-hidden flex flex-col">
-                <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 flex items-center justify-center border-b border-white/[0.05] relative flex-shrink-0">
-                  <span className="text-zinc-700 text-sm">{project.name}</span>
+                <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 flex items-center justify-center border-b border-white/[0.05] relative flex-shrink-0 overflow-hidden">
+                  {project.imageUrl ? (
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.name}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <span className="text-zinc-700 text-sm">{project.name}</span>
+                  )}
                   {project.status !== "published" && (
                     <div className="absolute top-3 right-3">
                       <Badge
@@ -83,7 +94,7 @@ export default function ProjectsPage() {
                       <Badge key={tag}>{tag}</Badge>
                     ))}
                   </div>
-                  {(project.demoUrl || project.repoUrl) && (
+                  {(project.demoUrl || project.repoUrl || project.socialUrl) && (
                     <div className="flex gap-3 pt-1">
                       {project.demoUrl && (
                         <a
@@ -103,6 +114,16 @@ export default function ProjectsPage() {
                           className="text-sm text-zinc-500 hover:text-zinc-300 flex items-center gap-1 transition-colors duration-200"
                         >
                           Código <ExternalIcon />
+                        </a>
+                      )}
+                      {project.socialUrl && (
+                        <a
+                          href={project.socialUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-zinc-500 hover:text-zinc-300 flex items-center gap-1 transition-colors duration-200"
+                        >
+                          Redes <ExternalIcon />
                         </a>
                       )}
                     </div>

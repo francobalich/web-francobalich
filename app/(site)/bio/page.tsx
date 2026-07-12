@@ -8,20 +8,22 @@ import SocialLinks from "../components/ui/SocialLinks";
 import CopyButton from "./CopyButton";
 
 export const metadata: Metadata = {
-  title: "Biografía — Franco Balich",
+  title: "Biografía - Franco Balich",
   description:
     "Kit de prensa y recursos para medios. Bio, fotos y contacto de Franco Balich.",
 };
 
 const bioShort = `Investigador en robótica, IoT e IA, director de un laboratorio creativo 3D, Data Engineer y creador de contenido sobre tecnología en redes sociales.`;
 
-const bioLong = `Franco Balich es Full Stack Developer, Data Engineer y Doctorando en Informática. Como Director del Laboratorio Creativo 3D, lidera proyectos en la intersección del software, los datos y el hardware.
+const bioLong = `Dirijo el Laboratorio Creativo 3D, donde lidero proyectos que integran impresión 3D, IA, IoT y robótica. Es un laboratorio transversal a las facultades: no se limita a Tecnología Informática, sino que reúne disciplinas de toda la universidad.
 
-Con más de 5 años de experiencia, ha desarrollado plataformas web, sistemas IoT, pipelines de datos e inteligencia artificial. Combina rigurosidad académica con pragmatismo de la industria tecnológica.
+Tengo más de 7 años de experiencia desarrollando proyectos de software, en investigación y en educación.
 
-Docente universitario, ha formado a cientos de estudiantes en programación y ciencia de datos. Construyó una comunidad de más de 120.000 seguidores con contenido sobre desarrollo, IoT y Python.
+Como Full Stack Developer y Data Engineer, desarrollo plataformas web, sistemas IoT, pipelines de datos e inteligencia artificial. Me interesa especialmente la creación de proyectos propios y el emprendimiento tecnológico.
 
-Speaker en eventos de tecnología en Argentina, habla sobre IoT, data engineering y educación tecnológica.`;
+Además, soy docente universitario: formé a cientos de estudiantes en programación y ciencia de datos, y construí una comunidad de más de 120.000 seguidores con contenido sobre desarrollo, IoT y Python.
+
+También doy charlas en eventos de tecnología, sobre IoT, inteligencia artificial y educación tecnológica.`;
 
 const expertise = [
   "Full Stack Development",
@@ -56,7 +58,7 @@ export default function BioPage() {
                 <div className="relative w-44 h-44 md:w-48 md:h-48 rounded-2xl overflow-hidden border border-blue-500/20 glow-blue flex-shrink-0">
                   <Image
                     src="/images/profile/franco.jpeg"
-                    alt="Franco Balich — foto oficial"
+                    alt="Franco Balich - foto oficial"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 768px) 176px, 192px"
@@ -76,7 +78,7 @@ export default function BioPage() {
                 <GlassCard hover={false} className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
-                      Bio corta — {bioShort.length} / 200 caracteres
+                      Bio - {bioShort.length} / 200 caracteres
                     </span>
                     <CopyButton text={bioShort} />
                   </div>
@@ -87,7 +89,7 @@ export default function BioPage() {
                 <GlassCard hover={false} className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
-                      Bio larga — {bioLong.length} / 1000 caracteres
+                      Bio en detalle - {bioLong.length} / 1000 caracteres
                     </span>
                     <CopyButton text={bioLong} />
                   </div>
@@ -123,12 +125,11 @@ export default function BioPage() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div className="flex flex-col gap-3">
                   <h2 className="text-2xl font-bold text-zinc-100">
-                    ¿Querés invitarme a hablar?
+                    ¿Trabajamos juntos?
                   </h2>
                   <p className="text-zinc-400 leading-relaxed max-w-md">
-                    Doy charlas sobre IoT, datos, laboratorios de innovación y
-                    desarrollo de software. Si organizás un evento o meetup,
-                    hablemos.
+                    Podemos hablar sobre proyectos de software, IA o creación
+                    de contenido. Si hacés eventos o meetups, ¡hablame!
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 flex-shrink-0">
@@ -153,19 +154,6 @@ export default function BioPage() {
             </GlassCard>
           </section>
 
-          {/* ── Bloque 4.5: Social proof ── */}
-          <section aria-label="Organizaciones y eventos">
-            <h2 className="text-2xl font-bold text-zinc-100 mb-2">
-              Eventos y organizaciones
-            </h2>
-            <p className="text-zinc-500 text-sm mb-8">
-              Eventos donde participé como speaker, instructor o panelista.
-            </p>
-            <GlassCard hover={false} className="p-10 text-center">
-              <p className="text-zinc-600 text-sm">Logos de eventos — próximamente</p>
-            </GlassCard>
-          </section>
-
           {/* ── Bloque 3: Galería de fotos ── */}
           <section aria-label="Galería de fotos">
             <h2 className="text-2xl font-bold text-zinc-100 mb-2">
@@ -176,7 +164,7 @@ export default function BioPage() {
               en medios con crédito.
             </p>
             <GlassCard hover={false} className="p-10 text-center">
-              <p className="text-zinc-600 text-sm">Fotos — próximamente</p>
+              <p className="text-zinc-600 text-sm">Fotos - próximamente</p>
             </GlassCard>
           </section>
 

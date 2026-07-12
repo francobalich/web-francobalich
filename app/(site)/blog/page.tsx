@@ -11,7 +11,7 @@ import { formatDate } from "@/data/blog";
 export const revalidate = 3600; // fallback: revalidar cada hora
 
 export const metadata: Metadata = {
-  title: "Blog — Franco Balich",
+  title: "Blog - Franco Balich",
   description:
     "Artículos sobre desarrollo de software, IoT, datos y tecnología.",
 };

@@ -4,9 +4,9 @@ import Image from "next/image";
 import FadeIn from "./ui/FadeIn";
 
 const stats = [
-  { label: "Laboratorio", value: "Lab Creativo 3D" },
-  { label: "Formación", value: "Doctorando" },
-  { label: "Especialización", value: "IoT · Datos · Web" },
+  { label: "Director de", value: "Lab Creativo 3D" },
+  { label: "Investigación", value: "Robótica e IA" },
+  { label: "Especialización", value: "IA · IoT · Web" },
   { label: "Ubicación", value: "Argentina" },
 ];
 
@@ -19,7 +19,7 @@ export default function Hero() {
         <FadeIn instant delay={0} className="flex items-center gap-4 mb-10">
           <span className="h-px w-10 bg-blue-500 flex-shrink-0" />
           <span className="text-sm md:text-base text-blue-400 font-medium tracking-widest uppercase">
-            Data Engineer · Full Stack · Docente · Creador de contenido
+            Full Stack · Investigador · Docente · Creador de contenido
           </span>
         </FadeIn>
 
@@ -41,12 +41,12 @@ export default function Hero() {
 
             <FadeIn instant delay={220} className="flex flex-col gap-3 max-w-xl">
               <p className="text-zinc-300 text-xl md:text-2xl font-light leading-snug">
-                Data Engineer · Docente e Investigador
+                Full Stack · Investigador · Docente
               </p>
               <p className="text-zinc-500 text-lg leading-relaxed">
-                Más de 5 años construyendo software en desarrollo, investigación
-                y educación. Apasionado por la IA, el IoT y enseñar tecnología
-                a más de 120k personas en redes sociales.
+                Más de 7 años construyendo software en desarrollo, investigación
+                y educación. Creo proyectos propios y enseño tecnología a más
+                de 120k personas en redes sociales.
               </p>
             </FadeIn>
 

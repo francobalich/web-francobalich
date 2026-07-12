@@ -17,7 +17,7 @@ export default async function Image({ params }: Props) {
     depth: 0,
   });
   const post = docs[0];
-  const title = post?.title ?? "Blog — Franco Balich";
+  const title = post?.title ?? "Blog - Franco Balich";
   const excerpt = post?.excerpt ?? "";
 
   return new ImageResponse(
