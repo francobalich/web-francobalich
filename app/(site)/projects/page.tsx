@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import GlassCard from "../components/ui/GlassCard";
@@ -56,8 +57,18 @@ export default function ProjectsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {projects.map((project) => (
               <GlassCard key={project.id} className="overflow-hidden flex flex-col">
-                <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 flex items-center justify-center border-b border-white/[0.05] relative flex-shrink-0">
-                  <span className="text-zinc-700 text-sm">{project.name}</span>
+                <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 flex items-center justify-center border-b border-white/[0.05] relative flex-shrink-0 overflow-hidden">
+                  {project.imageUrl ? (
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.name}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <span className="text-zinc-700 text-sm">{project.name}</span>
+                  )}
                   {project.status !== "published" && (
                     <div className="absolute top-3 right-3">
                       <Badge

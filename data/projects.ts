@@ -58,8 +58,10 @@ export const projects: Project[] = [
     id: "7",
     name: "Lab IoT",
     slug: "lab-iot",
-    description: "Laboratorio remoto para experimentar con dispositivos IoT desde el navegador.",
-    tags: ["IoT", "Web", "Hardware"],
+    description:
+      "Laboratorio remoto de IoT en convenio con YPF: programá robots reales con Python desde el navegador.",
+    tags: ["Python", "IoT", "ESP32"],
+    imageUrl: "/images/projects/lab-iot.png",
     demoUrl: "https://labremoto.labs-uai.com",
     featured: false,
     status: "published",

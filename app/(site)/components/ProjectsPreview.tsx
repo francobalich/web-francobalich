@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import GlassCard from "./ui/GlassCard";
 import Badge from "./ui/Badge";
 import FadeIn from "./ui/FadeIn";
@@ -37,10 +38,22 @@ export default function ProjectsPreview() {
           {featured.map((project, i) => (
             <FadeIn key={project.id} delay={i * 100}>
             <GlassCard className="overflow-hidden group h-full">
-              {/* Imagen placeholder */}
-              <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 flex items-center justify-center border-b border-white/[0.05]">
-                <span className="text-zinc-700 text-sm">{project.name}</span>
-              </div>
+              {/* Imagen */}
+              {project.imageUrl ? (
+                <div className="relative h-44 border-b border-white/[0.05]">
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.name}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+              ) : (
+                <div className="h-44 bg-gradient-to-br from-blue-600/10 to-cyan-600/5 flex items-center justify-center border-b border-white/[0.05]">
+                  <span className="text-zinc-700 text-sm">{project.name}</span>
+                </div>
+              )}
 
               {/* Contenido */}
               <div className="p-6 flex flex-col gap-3">
