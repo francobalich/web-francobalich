@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Kit de prensa y recursos para medios. Bio, fotos y contacto de Franco Balich.",
 };
 
-const bioShort = `Franco Balich es Full Stack Developer y Data Engineer. Director del Laboratorio Creativo 3D, Doctorando en Informática. 5+ años en desarrollo, investigación y docencia. 120k seguidores en tech.`;
+const bioShort = `Investigador en robótica, IoT e IA, director de un laboratorio creativo 3D, Data Engineer y creador de contenido sobre tecnología en redes sociales.`;
 
 const bioLong = `Franco Balich es Full Stack Developer, Data Engineer y Doctorando en Informática. Como Director del Laboratorio Creativo 3D, lidera proyectos en la intersección del software, los datos y el hardware.
 
