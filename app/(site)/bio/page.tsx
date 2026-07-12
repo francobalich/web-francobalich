@@ -21,7 +21,7 @@ Como Full Stack Developer, desarrollo plataformas web, sistemas IoT, pipelines d
 
 Soy docente universitario y formé a cientos de estudiantes en programación y ciencia de datos. Construí una comunidad de más de 120.000 seguidores con contenido sobre desarrollo, IoT y Python.
 
-También doy charlas en eventos de tecnología en Argentina, sobre IoT, data engineering y educación tecnológica.`;
+También doy charlas en eventos de tecnología, sobre IoT, inteligencia artificial y educación tecnológica.`;
 
 const expertise = [
   "Full Stack Development",
