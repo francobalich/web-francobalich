@@ -77,6 +77,7 @@ export const projects: Project[] = [
     description:
       "Galería de imágenes desarrollada durante un curso de React que dicté en el MUG (Microsoft User Group).",
     tags: ["React", "JavaScript", "Web"],
+    imageUrl: "/images/projects/image-gallery.png",
     repoUrl: "https://github.com/francobalich/ImageGallery",
     featured: false,
     status: "published",
