@@ -76,7 +76,7 @@ export default function BioPage() {
                 <GlassCard hover={false} className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
-                      Bio corta - {bioShort.length} / 200 caracteres
+                      Bio - {bioShort.length} / 200 caracteres
                     </span>
                     <CopyButton text={bioShort} />
                   </div>
@@ -87,7 +87,7 @@ export default function BioPage() {
                 <GlassCard hover={false} className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">
-                      Bio larga - {bioLong.length} / 1000 caracteres
+                      Bio en detalle - {bioLong.length} / 1000 caracteres
                     </span>
                     <CopyButton text={bioLong} />
                   </div>
