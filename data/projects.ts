@@ -70,4 +70,15 @@ export const projects: Project[] = [
     featured: false,
     status: "published",
   },
+  {
+    id: "8",
+    name: "ImageGallery",
+    slug: "image-gallery",
+    description:
+      "Galería de imágenes desarrollada durante un curso de React que dicté en el MUG (Microsoft User Group).",
+    tags: ["React", "JavaScript", "Web"],
+    repoUrl: "https://github.com/francobalich/ImageGallery",
+    featured: false,
+    status: "published",
+  },
 ];
