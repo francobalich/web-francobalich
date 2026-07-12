@@ -5,7 +5,7 @@ import FadeIn from "./ui/FadeIn";
 
 const stats = [
   { label: "Director de", value: "Lab Creativo 3D" },
-  { label: "Formación", value: "Doctorando" },
+  { label: "Formación", value: "Investigador en Robótica e IA" },
   { label: "Especialización", value: "IA · IoT · Web" },
   { label: "Ubicación", value: "Argentina" },
 ];
