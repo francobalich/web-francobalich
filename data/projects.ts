@@ -32,7 +32,7 @@ export const projects: Project[] = [
     tags: ["Python", "IoT", "Hardware"],
     imageUrl: "/images/projects/control-robots.png",
     demoUrl: "https://control.labs-uai.com/",
-    featured: true,
+    featured: false,
     status: "published",
   },
   {
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     tags: ["Python", "IA", "IoT"],
     imageUrl: "/images/projects/alice.png",
     demoUrl: "https://alice.francobalich.com",
-    featured: false,
+    featured: true,
     status: "published",
   },
   {
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     tags: ["Python", "IoT", "ESP32"],
     imageUrl: "/images/projects/lab-iot.png",
     demoUrl: "https://labremoto.labs-uai.com",
-    featured: false,
+    featured: true,
     status: "published",
   },
   {
