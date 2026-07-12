@@ -125,12 +125,11 @@ export default function BioPage() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div className="flex flex-col gap-3">
                   <h2 className="text-2xl font-bold text-zinc-100">
-                    ¿Querés invitarme a hablar?
+                    ¿Trabajamos juntos?
                   </h2>
                   <p className="text-zinc-400 leading-relaxed max-w-md">
-                    Doy charlas sobre IoT, datos, laboratorios de innovación y
-                    desarrollo de software. Si organizás un evento o meetup,
-                    hablemos.
+                    Podemos hablar sobre proyectos de software, IA o creación
+                    de contenido. Si hacés eventos o meetups, ¡hablame!
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 flex-shrink-0">
@@ -152,19 +151,6 @@ export default function BioPage() {
                   </a>
                 </div>
               </div>
-            </GlassCard>
-          </section>
-
-          {/* ── Bloque 4.5: Social proof ── */}
-          <section aria-label="Organizaciones y eventos">
-            <h2 className="text-2xl font-bold text-zinc-100 mb-2">
-              Eventos y organizaciones
-            </h2>
-            <p className="text-zinc-500 text-sm mb-8">
-              Eventos donde participé como speaker, instructor o panelista.
-            </p>
-            <GlassCard hover={false} className="p-10 text-center">
-              <p className="text-zinc-600 text-sm">Logos de eventos - próximamente</p>
             </GlassCard>
           </section>
 
