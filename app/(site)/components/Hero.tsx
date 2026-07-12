@@ -95,7 +95,7 @@ export default function Hero() {
         <FadeIn instant delay={500} className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-10 border-t border-white/[0.06]">
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col gap-1.5">
-              <span className="text-xs text-zinc-400 uppercase tracking-widest">
+              <span className="text-xs text-zinc-600 uppercase tracking-widest">
                 {stat.label}
               </span>
               <span className="text-zinc-200 font-medium text-base md:text-lg">

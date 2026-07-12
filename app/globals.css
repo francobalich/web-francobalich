@@ -9,7 +9,6 @@ html {
   scroll-behavior: smooth;
 }
 
-
 body {
   background-color: #09090b;
   color: #f4f4f5;
@@ -17,8 +16,8 @@ body {
 
 @layer utilities {
   .glass {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
