@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const bioShort = `Investigador en robótica, IoT e IA, director de un laboratorio creativo 3D, Data Engineer y creador de contenido sobre tecnología en redes sociales.`;
 
-const bioLong = `Soy director del Laboratorio Creativo 3D, donde lidero proyectos que integran impresión 3D, IA, IoT y robótica. Es un laboratorio cross-facultad: no se limita a Tecnología Informática, sino que reúne disciplinas de toda la universidad. Tengo más de 7 años de experiencia desarrollando software, en investigación y en educación.
+const bioLong = `Soy director del Laboratorio Creativo 3D, donde lidero proyectos que integran impresión 3D, IA, IoT y robótica. Es un laboratorio transversal a las facultades: no se limita a Tecnología Informática, sino que reúne disciplinas de toda la universidad. Además, tengo más de 7 años de experiencia desarrollando software, en investigación y en educación.
 
 Como Full Stack Developer, desarrollo plataformas web, sistemas IoT, pipelines de datos e inteligencia artificial. Me interesa especialmente la creación de proyectos propios y el emprendimiento tecnológico.
 
